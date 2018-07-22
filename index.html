@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/jquery.dataTables.min.css" media="screen">          
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>    
+    <script>
+      $(document).ready(function() {
+        $('#myTable1').DataTable({
+          // "lengthMenu": [[10, 25, 50, -1], ["10筆", "25筆", "50筆", "全部"]], 
+          // "pageLength": 10, // 設定初始頁的筆數           
+          // "pageLength": -1, // 設定初始頁的筆(show all)
+             "lengthMenu": [[5,10, 15, 25, 50, -1], ["5筆","10筆","15筆", "25筆", "50筆", "全部"]], 
+             "pageLength": 15, // 設定初始頁的筆數 
+             "language": {
+                     "decimal":",",
+                     "thousands":"."
+                 },                                                  
+             "oLanguage": {
+                "sSearch": "全文搜索",
+                "sLengthMenu": "每頁顯示 _MENU_ 筆記錄",
+                "sZeroRecords": "抱歉， 没有找到",
+                "sInfo": "從 _START_ 到 _END_ /共 _TOTAL_ 筆記錄",
+                "sInfoEmpty": "没有記錄",
+                "sInfoFiltered": "(從 _MAX_ 筆記錄中檢索)",
+                "oPaginate": {
+                  "sFirst": "首頁",
+                  "sPrevious": "上頁",
+                  "sNext": "下頁",
+                  "sLast": "末頁"
+                  }
+              }          
+        });    
+      });  
+
+    </script>   
+    <style>
+    #myTable1 {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        text-shadow:none;  
+        width: 100%;
+    }
+
+    #myTable1 td, #myTable1 th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #myTable1 tr:nth-child(even){background-color: #f2f2f2;}
+
+    #myTable1 tr:hover {background-color: #ddd;}
+
+    #myTable1 th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #4CAF50;
+        text-shadow:none;        
+        color: black;
+    }
+    </style>     
+  </head>
+  <body>
+    <br>
+    <div class="row" align="center">
+       <h2>Jquery 上課</h2>
+    </div>
+    <br>
+
+    <div class="container">
+      <table  id="myTable1">
+        <thead>
+          <tr>
+            <th>序號</th>
+            <th>程式名稱</th>
+            <th>功能說明</th>          
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+              <td>010</td>    
+              <td><a href="dt_01_basic.html" target="_blank">dt_01_basic.html</a></td>
+              <td>DataTable 基本方法</td>           
+          </tr>
+                                                                                                           
+        </tbody>
+      </table> 
+    </div">
+  </body>
+</html>
