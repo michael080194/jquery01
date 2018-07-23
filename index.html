@@ -34,45 +34,46 @@
                   "sLast": "末頁"
                   }
               }          
-        });    
+        });  
+        $('.dataTables_length').css("padding-bottom","20px"); 
+        $('.dataTables_info').css("padding-top","20px");  
+        $('.dataTables_paginate').css("padding-top","20px");         
       });  
 
     </script>   
     <style>
-    #myTable1 {
-        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-        border-collapse: collapse;
-        text-shadow:none;  
-        width: 100%;
-    }
+      #myTable1 {
+          font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          text-shadow:none;  
+          width: 100%;
+      }
 
-    #myTable1 td, #myTable1 th {
-        border: 1px solid #ddd;
-        padding: 8px;
-    }
+      #myTable1 td, #myTable1 th {
+          border: 1px solid #ddd;
+          padding: 8px;
+      }
 
-    #myTable1 tr:nth-child(even){background-color: #f2f2f2;}
+      #myTable1 tr:nth-child(even){background-color: #f2f2f2;}
 
-    #myTable1 tr:hover {background-color: #ddd;}
+      #myTable1 tr:hover {background-color: #ddd;}
 
-    #myTable1 th {
-        padding-top: 12px;
-        padding-bottom: 12px;
-        text-align: left;
-        background-color: #4CAF50;
-        text-shadow:none;        
-        color: black;
-    }
+      #myTable1 th {
+          padding-top: 12px;
+          padding-bottom: 12px;
+          text-align: left;
+          background-color: #4CAF50;
+          text-shadow:none;        
+          color: black;
+      }
     </style>     
   </head>
   <body>
-    <br>
     <div class="row" align="center">
        <h2>Jquery 上課</h2>
     </div>
-    <br>
 
-    <div class="container">
+    <div class="container-fluid" style="margin:30px;">
       <table  id="myTable1">
         <thead>
           <tr>
@@ -87,7 +88,7 @@
               <td><a href="dt_01_basic.html" target="_blank">dt_01_basic.html</a></td>
               <td>DataTable 基本方法</td>           
           </tr>
-                                                                                                           
+
         </tbody>
       </table> 
     </div">
