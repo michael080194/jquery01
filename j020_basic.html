@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function() {
+
+      });  
+      function msg() {
+        var temp1 = $('#box');
+        alert(temp1); // 获取 jquery 对象
+        temp1.val("123");        
+        for(x in temp1){
+          console.log(x);
+        }
+      }
+
+      function msg1() {
+        var temp1 = $('#box').get(0);
+        // var temp1 = $('#box').eq(0);
+        console.log(temp1);
+        temp1.value = "456";
+        alert(temp1); // 获取的 html 对象
+        for(x in temp1){
+          // console.log(x);
+        }        
+      }
+
+    </script>   
+  </head>
+  <body>
+    <input type="button" id="box" value="Click me" onclick="msg1()">
+    <pre>
+<a href="https://www.w3schools.com/tags/ref_attributes.asp" target="_blank">buttom html 物件的 attribute </a>
+    </pre>
+  </body>
+</html>

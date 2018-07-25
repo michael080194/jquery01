@@ -1,0 +1,7 @@
+https://github.com/michael080194/jquery01.git  
+
+更新資料至 git hub
+git add .
+git commit -m "commit訊息" 
+git push origin master
+

@@ -69,45 +69,55 @@
     </style>     
   </head>
   <body>
-    <div class="row" align="center">
-       <h2>Jquery 上課</h2>
-    </div>
 
     <div class="container-fluid" style="margin:30px;">
       <table  id="myTable1">
         <thead>
           <tr>
             <th>序號</th>
-            <th>程式名稱</th>
-            <th>功能說明</th>          
+            <th>觀念說明</th>          
           </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>010</td>    
-                <td><a href="j010_concept.html" target="_blank">j010_concept.html</a></td>
-                <td>jquery 基本觀念</td>           
-            </tr>          
           <tr>
-              <td>020</td>    
-              <td><a href="j020_basic.html" target="_blank">j020_basic.html</a></td>
-              <td>jquery 基本方法 ( $(document).ready(function() {}); )</td>           
-          </tr>
-          <tr>
-              <td>030</td>    
-              <td><a href="j030_select.html" target="_blank">j030_select.html</a></td>
-              <td>元素選擇器、class選擇器、id選擇器、</td>       
+              <td>003</td>    
+              <td>
+                <p>
+                  <a href="https://pjchender.blogspot.com/2017/06/javascript-understanding-weird-part.html" target="_blank">JavaScript全攻略
+                  </a>     
+                </p>
+              </td>           
           </tr>            
           <tr>
-              <td>031</td>    
-              <td><a href="j031_select.html" target="_blank">j031_select.html</a></td>
-              <td>群組選擇器</td>       
-          </tr>    
+              <td>005</td>    
+              <td>
+                <p>
+                  <a href="http://robflaherty.github.io/jquery-annotated-source/" target="_blank">jQuery 原始碼解析
+                  </a>
+                  <a href="https://itw01.com/VC7PE6I.html" target="_blank" style="margin-left:20px">jquery的整體代碼架構簡化說明
+                  </a>    
+                  <a href="https://code.jquery.com/jquery/" target="_blank" style="margin-left:20px">jquery All version
+                  </a>                                                  
+                </p>
+              </td>           
+          </tr>          
           <tr>
-              <td>035</td>    
-              <td><a href="j035_select.html" target="_blank">j035_select.html</a></td>
-              <td>常規選擇器1 (length、eq()、get()、css multi-style、HTMLDivElement、Object)</td>       
-          </tr>                
+              <td>010</td>    
+              <td>
+                <p>console.log()可以打印任何类型的数据。而 alert() 只能输出string。</p>
+                <p>如果alert输出是对象会自动调用 toString() 方法。</p>
+                <p>如果想 console.log() 输出的与alert相同，需要调用 toString()</p>
+              </td>           
+          </tr>
+          <tr>
+              <td>012</td>    
+              <td>
+                <p>重新定義 jQuery</p>
+                <p>var $$ =jQuery; </p>
+                <p>有時須要移除jQuery的 $(因為別的庫也用到$) , 再重新定義</p>
+                <p>jQuery.noConFict()</p>
+              </td>           
+          </tr>
         </tbody>
       </table> 
     </div>

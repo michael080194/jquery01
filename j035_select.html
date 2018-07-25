@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>    
+    <script>
+      $(document).ready(function() {
+        alert($('.box').length);
+        // alert($('.box').size()); // 1.8 之後棄用
+        // $('.box:first').text('regular selector 1');
+        var temp1 = $('.box').get(0);
+        temp1.value = "aaa";
+        $('.box').eq(1).css({
+          "background-color" : "blue",
+          "height" : "200px",
+          "width" : "200px",
+        });
+      });  
+      function msg1() {
+        var temp1 = $('.box').get(0);
+        alert(temp1);
+        $('.box').get(0).innerText = "我的物件類形HTMLDivElement";        
+        for(x in temp1){
+          console.log(x);
+        }    
+      }
+      function msg2() {
+        var temp1 = $('.box').eq(0);
+        alert(temp1);
+        $('.box').eq(0).text("我的物件類形 Object");        
+        for(x in temp1){
+          console.log(x);
+        }    
+
+      }      
+    </script>   
+  </head>
+  <body>
+    <div class="box"> 常規選擇器1 </div>
+    <div class="box"> 常規選擇器2 </div>
+    <div class="box"> 常規選擇器3 </div>
+    <div class="box"> 常規選擇器4 </div>
+    <input type="button" id="box" value="get(0) of object" onclick="msg1()">
+    <input type="button" id="box" value="eq(0) of object" onclick="msg2()">    
+  </body>
+</html>
