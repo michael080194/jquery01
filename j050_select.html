@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>    
+    <style>
+     img {
+      width : 200px;
+      height: 200px;
+      margin:10px;
+      padding:10px;
+     }
+
+     .button {
+         background-color: #4CAF50;
+         border: none;
+         color: white;
+         padding: 15px 32px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 4px 2px;
+         cursor: pointer;
+     } 
+
+     /* a[target] {
+         background-color: yellow;
+     }  */
+
+     /* a[target=_blank] {
+         background-color: yellow;
+     }  */
+
+     /* [title~=flower] {
+         border: 5px solid yellow;
+     } */
+
+     /* [title~=flower] {
+         border: 5px solid yellow;
+     } */
+
+     /* [class|=top] {
+         border: 5px solid yellow;
+     }  */
+
+     /* [class^='top'] {
+         border: 5px solid hotpink;
+     }                */
+     /* [class$='test'] {
+         border: 5px solid hotpink;
+     }         */
+     /* [title *='er'] {
+         border: 5px solid hotpink;
+     }            */
+
+      /* input[type="text"] {
+          width: 150px;
+          margin-bottom: 10px;
+          background-color: yellow;
+      } */
+
+      /*
+      input[class="bt1"] {
+          background-color:purple;
+          font-size: 16px;
+          padding: 15px 20px;
+      }   */
+
+    </style>    
+    <script>
+      $(document).ready(function() {
+                   
+      });     
+      function show1(){
+        $("a[target]").css("background-color", "red");
+      }  
+      function show2(){
+        $("a[target='_blank']").css("background-color", "hotpink");    
+      }    
+
+      function show3(){
+        $("[title~=flower]").css("border", "5px solid hotpink");
+        // 同時二個條件成立
+        // $("[title~=flower][target='_blank']").css("border", "5px solid hotpink");
+      }     
+
+      function show4(){
+        $("[class|=top]").css("border", "5px solid hotpink");
+      }     
+
+      function show5(){
+        $("[class^='top']").css("border", "5px solid hotpink");
+      }    
+
+      function show6(){
+        $("[class$='test']").css("border", "5px solid hotpink");
+      }    
+
+      function show7(){
+        $("[title*='er']").css("border", "5px solid hotpink");
+      }  
+
+      function show8(){
+        $("input[type=text]").css({
+          "width": "150px",
+          "margin-bottom": "10px",
+          "background-color": "yellow"
+        });
+      }
+
+      function show9(){
+        $("[class=bt1]").css({
+          "background-color":"purple",
+          "font-size": "16px",
+          "padding": "15px 20px"        
+        });
+      }    
+    </script>   
+  </head>
+  <body>
+    <div>
+      <a href="https://www.w3schools.com">w3schools.com</a>
+      <a href="http://www.disney.com" target="_blank" title="flower">disney.com</a>
+      <a href="http://www.wikipedia.org" target="_top">wikipedia.org</a>
+    </div>
+    <div>
+      <img src="https://www.w3schools.com/css/klematis.jpg" title="klematis flower" class="top-header">
+      <img src="https://www.w3schools.com/css/img_flwr.gif" title="flower"  class="top-text-test">
+      <img src="https://www.w3schools.com/css/img_tree.gif" title="trere"  class="topcontenttest">
+      <img src="https://www.w3schools.com/html/pic_trulli.jpg" title="picture" class="top_test">     
+    </div>  
+    <div>
+      <form name="input" action="" method="get">
+        Firstname:<input type="text" name="Name" value="Peter" size="20">
+        Lastname:<input type="text" name="Name" value="Griffin" size="20">
+        <input type="button" value="Example Button" class="bt1">
+      </form>      
+    </div>  
+    <hr>
+   <div>
+    <input type="button" value="a[target]" onclick="show1()" class="button" >      
+    <input type="button" value="a[target=_blank]" onclick="show2()" class="button" > 
+    <input type="button" value="[title~=flower]" onclick="show3()" class="button" >  
+    <input type="button" value="[class|=top]" onclick="show4()" class="button" >     
+    <input type="button" value="[class^='top']" onclick="show5()" class="button" >                   <input type="button" value="[class$='tets']" onclick="show6()" class="button" > 
+    <input type="button" value="[titlez*='er']" onclick="show7()" class="button" >             
+   </div>  
+   <div>
+    <input type="button" value="input[type='text']" onclick="show8()" class="button" >      
+    <input type="button" value="[class='bt1']" onclick="show9()" class="button" > 
+
+  </div>         
+   <div>
+     <dl>
+       <dt style="font-size: 2em;color:red;">使用說明</dt>
+       <dd>a[target]：選擇 所有元素 a 裡面有 target 屬性</dd>
+       <dd>a[target=_blank]：選擇 所有元素 a 屬性 target 值完全等於 _blank</dd>
+       <dd>[title~=flower]：選擇 屬性 title 值 包含 flower 字串</dd>
+       <dd>[class|=top]：選擇 屬性 class 值 為 top 或開頭字串為 top-</dd>
+       <dd>[class^='top']：選擇 屬性 class 值 為 top 開頭的元素</dd>    
+       <dd>[class$='top']：選擇 屬性 class 值  結尾為 test 的元素</dd>  
+       <dd>[titlez*='er']：選擇 屬性 title 值 包含 er 字串</dd>   
+       <dd>input[type='text']：選擇 元素input , 屬性 type 值 等於 text , 改變該元素的 style </dd>  
+       <dd>[class='bt1']：選擇 屬性 class 值 等於 bt1 , 改變該元素的 style </dd>                     
+   </dl>    
+   </div>  
+  </body>
+</html>

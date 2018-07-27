@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>    
+    <style>
+    .button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }    
+    </style>    
+    <script>
+      $(document).ready(function() {
+        //  $('div ~ p').css("background-color" , "hotpink");  
+        // $('div').nextAll('p').css("background-color" , "hotpink");       
+        // $('div').nextAll('p').eq(0).css("background-color" , "hotpink");                       
+      });     
+      function show1(){
+        $('#aa1').prev('p').css("background-color" , "hotpink"); 
+      }
+      function show2(){
+        $('#aa1').prevAll('p').css("background-color" , "hotpink"); 
+      }     
+      function show3(){
+        $('#aa1').siblings('p').css("background-color" , "hotpink"); 
+      }            
+    </script>   
+  </head>
+  <body>
+        <p>Paragraph 1.</p>
+        <p>Paragraph 2.</p>
+        <p>Paragraph 3.</p>
+
+        <div style="height:100px;width:200px;border: 5px solid lightgreen" id="aa1">
+          <code>Some code.</code>
+          <p>Paragraph in div.</p>
+        </div>
+        
+        <p>Paragraph 4.</p>
+        <code>Some code.</code>
+        <p>Paragraph 5.</p>
+
+        <div style="height:100px;width:200px;border: 5px solid dodgerblue">
+             <p>Paragraph in div2.</p>
+        </div>        
+        <p>Paragraph 6.</p>
+        
+        <input type="button" value="prev" onclick="show1()" class="button" >            
+        <input type="button" value="prevAll" onclick="show2()" class="button" >  
+        <input type="button" value="siblings" onclick="show3()" class="button" >             
+  </body>
+</html>

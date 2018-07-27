@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>    
+    <style>
+    div ~ p {
+        background-color: hotpink;
+    }    
+    </style>    
+    <script>
+      $(document).ready(function() {
+        //  $('div ~ p').css("background-color" , "hotpink");  
+        // $('div').nextAll('p').css("background-color" , "hotpink");       
+        // $('div').nextAll('p').eq(0).css("background-color" , "hotpink");                       
+      });     
+    </script>   
+  </head>
+  <body>
+        <p>Paragraph 1.</p>
+
+        <div>
+          <code>Some code.</code>
+          <p>Paragraph 2.</p>
+        </div>
+        
+        <p>Paragraph 3.</p>
+        <code>Some code.</code>
+        <p>Paragraph 4.</p>
+  </body>
+</html>

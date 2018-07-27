@@ -6,33 +6,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">         
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>   
-    <!-- <style>
-      div, p, strong {
+    <style>
+      .button {
+          background-color: #4CAF50;
+          border: none;
+          color: white;
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin: 4px 2px;
+          cursor: pointer;
+      }    
+                 
+      /* div, p, strong {
         color : blue;
         font-size : 200%
-      }
-    </style>     -->
+      } */
+    </style>    
 
     <script>
       $(document).ready(function() {
+
+      });  
+      function show1(){
         // $('div,p,strong').css("color" , "blue");        
         $('div,p,strong').css({
           "color" : "blue",
           "font-size" : "200%"       
         });
-      });  
+      }  
+      function show2(){
+        // $("#box p").css("color", "green");          
+        $("p" , "#box").css("color", "green"); // 同上     
+      }           
     </script>   
 
   </head>
   <body>
     <div> div1 </div>
-    <div> div2 </div>
+    <div id="box">
+       <p> p in div</p>
+    </div>
     <div> div3 </div>
     <p> p1 </p>
     <p> p2 </p>
     <p> p3 </p>  
     <strong> strong1 </strong>  
     <strong> strong2 </strong>  
-    <strong> strong3 </strong>                
+    <strong> strong3 </strong>   
+    <hr>
+    <input type="button" value="群組選擇器$('div,p,strong')" onclick="show1()" class="button" >        
+    <input type="button" value='$("p" , "#box")' onclick="show2()" class="button" >       
   </body>
 </html>

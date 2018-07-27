@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>    
+    <style>
+    .button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }    
+    </style>    
+    <script>
+      $(document).ready(function() {
+                   
+      });     
+      function show1(){
+        $("#term-2").prevUntil("dt")
+        .css("background-color", "red");
+      }  
+      function show2(){
+        var term1 = $('#term-1');
+        $("#term-3").prevUntil(term1, "dd")
+        .css("color", "green");
+      }     
+        
+      function show3(){
+        $("#term-2").nextUntil("dt")
+        .css("background-color", "red");
+      }   
+
+      function show4(){
+        var term3 = $('#term-3');
+        $("#term-1").nextUntil(term3, "dd")
+        .css("color", "green");
+      }     
+
+     function show5(){
+        var term3 = $('#term-3');
+        $("#term-1").nextUntil(term3, ".abc")
+        .css("color", "green");
+      }                     
+    </script>   
+  </head>
+  <body>
+        <dl>
+            <dt id="term-1">term 1</dt>
+            <dd>definition 1-a</dd>
+            <dd>definition 1-b</dd>
+            <dd>definition 1-c</dd>
+            <dd>definition 1-d</dd>
+            
+            <dt id="term-2">term 2</dt>
+            <dd class="abc">definition 2-a</dd>
+            <dd>definition 2-b</dd>
+            <dd class="abc">definition 2-c</dd>
+            
+            <dt id="term-3">term 3</dt>
+            <dd>definition 3-a</dd>
+            <dd>definition 3-b</dd>
+        </dl>
+
+        <input type="button" value="prevUntil by element" onclick="show1()" class="button" >        
+        <input type="button" value="prevUntil 含過濾器" onclick="show2()" class="button" >                    
+        <input type="button" value="nextUntil" onclick="show3()" class="button" >   
+        <input type="button" value="nextUntil 含過濾器" onclick="show4()" class="button" >            <input type="button" value="nextUntil 含過濾器 by class" onclick="show5()" class="button" >     
+  </body>
+</html>
