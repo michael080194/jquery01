@@ -1,4 +1,6 @@
-https://github.com/michael080194/jquery01.git  
+git hub: https://github.com/michael080194/jquery01.git  
+
+網址：https://michael080194.github.io/jquery01/
 
 更新資料至 git hub
 git add .

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>    
+    <style>
+     .button {
+         background-color: #4CAF50;
+         border: none;
+         color: white;
+         padding: 15px 32px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 4px 2px;
+         cursor: pointer;
+     } 
+
+     /* #box li:first-of-type {
+       background: hotpink;
+     } */
+     /* #box li:last-of-type {
+       background: hotpink;
+     }     */
+    </style>   
+
+    <script>
+      $(document).ready(function() {                   
+      });     
+      function show1(){
+       $('li:first').css('background' , 'hotpink'); // 
+      }  
+      function show2(){
+       $('#box li:last').css('background' , 'hotpink'); // 
+      }  
+      function show3(){
+       $('li:not(.red)').css('background' , 'hotpink'); // 
+      }    
+      function show4(){
+       $('li:even').css('background' , 'hotpink'); // 
+      }    
+      function show5(){
+       $('li:odd').css('background' , 'hotpink'); // 
+      }      
+      function show6(){
+       $('li:eq(2)').css('background' , 'hotpink'); // 
+      }  
+      function show7(){
+       $('li:gt(2)').css('background' , 'hotpink'); // 
+      }     
+      function show8(){
+       $('li:lt(2)').css('background' , 'hotpink'); // 
+      }  
+      function show9(){
+        // $(':header').css('background' , 'hotpink'); //  H1 H2 H3  背景變色
+        // $('div :header').css('background' , 'hotpink'); //  H1 背景變色 記得 div 後面要有空白
+        $('h2:header').css('background' , 'hotpink'); //  H2 背景變色
+      }  
+      function show10(){
+         $('input').get(0).focus(); // 網頁載入時將 input 設為 focus
+         $('input:focus').css('background' , 'hotpink');
+      }                                                  
+    </script>   
+  </head>
+  <body>
+   <ul id="box">
+     <li>list1 a1</li>
+     <li>list1 a2</li>
+     <li class="red">list1 a3</li>
+     <li>list1 a4</li>
+     <li>list1 a5</li>
+     <li>list1 a6</li>
+   </ul>
+   <ul>
+     <li>list1 b1</li>
+     <li>list1 b2</li>
+     <li>list1 b3</li>
+     <li>list1 b4</li>
+     <li>list1 b5</li>
+     <li>list1 b6</li>
+   </ul>
+   <h3> H3 </h3>
+   <h2> H2 </h2>
+   <div>
+     <h1>H1 in div</h1>
+   </div>
+   <input type ="text">
+
+   <hr>
+   <div>
+    <input type="button" value=":first" onclick="show1()" class="button" >   
+    <input type="button" value=":last" onclick="show2()" class="button" >   
+    <input type="button" value="not(selector)" onclick="show3()" class="button" >                    
+    <input type="button" value=":even" onclick="show4()" class="button" >   
+    <input type="button" value=":odd" onclick="show5()" class="button" >  
+    <input type="button" value=":eq(index)" onclick="show6()" class="button" >   
+    <input type="button" value=":gt(index)" onclick="show7()" class="button" >   
+    <input type="button" value=":lt(index)" onclick="show8()" class="button" >                    
+    <input type="button" value=":header" onclick="show9()" class="button" >   
+    <input type="button" value=":focus" onclick="show10()" class="button" >               
+   </div>  
+  
+   <div>
+     <dl>
+       <dt style="font-size: 2em;color:red;">使用說明</dt>
+       <dd>Jquery 提供下列方法以達上述功能 (方法的效率比較好)</dd>   
+       <dd>$('li').first().css('background' , '#ccc');</dd>   
+       <dd>$('li').last().css('background' , '#ccc');</dd>   
+       <dd>$('li').not('.red').css('background' , '#ccc');</dd>   
+       <dd>$('li').eq(2).css('background' , '#ccc');</dd>                  
+     </dl>    
+   </div>  
+  </body>
+</html>
