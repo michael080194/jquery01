@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>    
+    <style>
+     .aa1 , .aa2 , .box{
+      float: le÷ft;      
+      /* display: inline-block;   */
+      width: 50px;
+      height: 80px;
+      padding:5px;
+      margin: 10px;
+      border: 3px solid black;
+      background-color:lightyellow
+     }
+
+     .button {
+         background-color: #4CAF50;
+         border: none;
+         color: white;
+         padding: 15px 32px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 4px 2px;
+         cursor: pointer;
+     } 
+
+    </style>   
+
+    <script>
+      $(document).ready(function() {      
+              
+      }); 
+
+      function show1(){
+       var str = '<div class="box">節點測試11 </div>';
+       // var box = $(str); // create 節點 , 應該不用此寫法
+       $('.aa1').after(str); // 插入節點
+
+       $('.aa2').after('<strong> DOM1 </strong>');       
+      }  
+      function show2(){  
+          // $('.aa1').after(function(){
+          //   return '<strong> DOM2 </strong>';
+          // });           
+          $('.box').after(function(index , html){
+            console.log(html);
+            return '<strong> DOM2 </strong>'+html;
+          });
+      }        
+      function show3(){
+       var str = '<div class="box">節點測試11 </div>';
+       // var box = $(str); // create 節點 , 應該不用此寫法
+       $('.aa1').before(str); // 插入節點
+
+       $('.aa2').before('<strong> DOM1 </strong>');  
+      }       
+
+      function show4(){
+          // $('.aa1').before(function(){
+          //   return '<strong> DOM2 </strong>';
+          // });           
+          $('.box').before(function(index , html){
+           console.log(html);
+           return '<strong> DOM2 </strong>'+html;
+         });
+      }  
+      function show5(){
+        $('strong').insertAfter('.aa1'); // 將 strong元素 移到 .aa1 后面(同層次的元素)
+      }     
+
+      function show6(){
+        $('strong').insertBefore('.aa2'); // 將 strong元素 移到 .aa2 前面(同層次的元素)
+      }                                           
+    </script>   
+  </head>
+  <body>
+     <strong>I'm strong</strong>
+     <div class="aa1 box">AA1</div>
+
+     <div class="aa2 box">AA2</div>
+
+     <br>
+
+    <div style="clear:both;margin:20px">
+     <input type="button" value="after" onclick="show1()" class="button"> 
+     <input type="button" value="after by function" onclick="show2()" class="button">   
+     <input type="button" value="before"  onclick="show3()" class="button" >    
+     <input type="button" value="before by function" onclick="show4()" class="button">
+    </div>  
+
+    <div style="margin:20px">
+     <input type="button" value="insertAfter"  onclick="show5()" class="button"> 
+     <input type="button" value="insertBefore" onclick="show6()" class="button" >    
+    </div>  
+
+    <div>
+      <dl>
+        <dt style="font-size: 2em;color:red;">使用說明</dt>
+        <dd></dd>    
+        <dd>$('div').after('<strong> DOM1 </strong>'); // 在 div 后面 插入和 div 同層次的元素</dd> 
+        <dd>$('div').before('<strong> DOM1 </strong>'); // 在 div 前面 插入和 div 同層次的元素</dd> 
+        <dd>$('strong').insertAfter('div'); // 將 strong元素 移到 div 后面(同層次的元素)</dd> 
+        <dd>$('strong').insertBefore('div'); // 將 strong元素 移到 div  前面(同層次的元素)</dd> 
+      </dl>            
+      </dl>    
+    </div>  
+  </body>
+</html>

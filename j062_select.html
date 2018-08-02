@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>    
+    <style>
+     .button {
+         background-color: #4CAF50;
+         border: none;
+         color: white;
+         padding: 15px 32px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 4px 2px;
+         cursor: pointer;
+     } 
+
+
+       
+     .aa1 {
+      visibility:hidden;
+     }
+    </style>   
+
+    <script>
+      $(document).ready(function() {                   
+      });     
+      function show1(){
+       $( ".aa1" ).css( "visibility", "visible" ); 
+       $( ".aa2" ).css( "display", "block" );    
+       $( ".t1" ).attr( "type", "text" );               
+      }  
+      function show2(){
+       $( ".aa1" ).css( "visibility", "hidden" ); 
+       $( ".aa2" ).css( "display", "none" );    
+       $( ".t1" ).attr( "type", "hidden" );    
+      }                                                    
+    </script>   
+  </head>
+  <body>
+  <div>aa0</div>
+  <div class="aa1">aa1</div>
+  <div>bb1</div>
+  <div>bb2</div>
+  <div class="aa2" style="display:none;">aa2</div>
+  <input type="hidden" class="t1" value="I'm hidden before">
+
+   <div style="clear:both">
+    <input type="button" value=":visible" onclick="show1()" class="button" >   
+    <input type="button" value=":hidden" onclick="show2()" class="button" > 
+   </div>  
+  
+   <div>
+     <dl>
+       <dt style="font-size: 2em;color:red;">使用說明</dt>
+       <dd>:hidden 包含 display:none , input element type = "hidden" , visibility:hidden</dd>  
+       <dd>visibility:hidden 雖然 hidden , 但是位置仍佔著</dd>   
+     </dl>    
+   </div>  
+  </body>
+</html>

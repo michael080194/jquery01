@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>    
+    <style>
+     #box {
+      width: 200px;
+      height: 180px;
+      padding:5px;
+      margin: 10px;
+      border: 3px solid black;
+      background-color:lightyellow
+     }
+
+     .button {
+         background-color: #4CAF50;
+         border: none;
+         color: white;
+         padding: 15px 32px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 4px 2px;
+         cursor: pointer;
+     } 
+
+    </style>   
+
+    <script>
+      $(document).ready(function() {      
+              
+      }); 
+
+      function show1(){
+       // $(window).height();   // returns height of browser viewport
+       // $(document).height(); // returns height of HTML document    
+
+       alert("screen width:" +screen.width+ "  height:" + screen.height);
+       alert("window width:" +$(window).width() + "  height:" + $(window).height());
+       alert("document width:" +$(document).width()+ "  height:" + $(document).height());
+
+       console.log("screen width:" +screen.width+ "  height:" + screen.height);
+       console.log("window width:" +$(window).width() + "  height:" + $(window).height());
+       console.log("document width:" +$(document).width()+ "  height:" + $(document).height());
+      }  
+      function show2(){      
+       alert("inner width:" +$('#box').innerWidth() + "  height:" + $('#box').innerHeight()); 
+      }        
+      function show3(){
+       alert("outer width:" +$('#box').outerWidth() + "  height:" + $('#box').outerHeight()); 
+      }       
+
+      function show4(){
+       alert("outer width:" +$('#box').outerWidth(true) + "  height:" + $('#box').outerHeight(true)); 
+      }    
+                 
+    </script>   
+  </head>
+  <body>
+     <div id="box">
+      <strong>www.kyc168.com.tw </strong>
+     </div>
+     <br>
+
+    <div style="margin:20px">
+     <input type="button" value="取得 screen window document 大小" onclick="show1()" class="button"> 
+     <input type="button" value="取得 inner size" onclick="show2()" class="button" >   
+     <input type="button" value="取得 outer size"  onclick="show3()" class="button" >  
+     <input type="button" value="取得 outer size(含margin)"  onclick="show4()" class="button" >        
+    </div>  
+
+    <div>
+      <dl>
+        <dt style="font-size: 2em;color:red;">使用說明</dt>
+        <dd></dd>    
+        <dd>screen.height;   // returns height of screen </dd>         
+        <dd>$(window).height();   // returns height of browser viewport </dd> 
+        <dd>$(document).height(); // returns height of HTML document </dd>   
+        <dd>$('#box').innerHeight();   // element height (含padding 不包含 border margin) 
+        <dd>$('#box').outerHeight();   // element height (含padding 及border ，不包含 margin) <dd>$('#box').outerHeight(true); // element height (含padding border margin) 
+        </dd>                  
+      </dl>            
+      </dl>    
+    </div>  
+  </body>
+</html>

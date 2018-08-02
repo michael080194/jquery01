@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>    
+    <style>
+     .button {
+         background-color: #4CAF50;
+         border: none;
+         color: white;
+         padding: 15px 32px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 4px 2px;
+         cursor: pointer;
+     } 
+
+     li{
+         list-style:none;
+         float:left;
+         width:20px;
+         height:20px;
+         background:#ccc;
+         margin:5px;
+     }
+    </style>   
+
+    <script>
+      $(document).ready(function() {                   
+      });     
+      function show1(){
+        // $('li:first').css('background' , 'hotpink');   
+        $('li:even').css('background' , 'hotpink'); // 偶數列變 背景變色             
+      }  
+      function show2(){      
+        // $('li:first-child').css('background' , 'hotpink'); 
+        // $('li:last-child').css('background' , 'hotpink');         
+        // $('li:only-child').css('background' , 'hotpink'); //get只有一個子元素 的元素
+        // $('li:nth-child(even)').css('background' , 'hotpink'); // 偶數列 背景變色(位址從1開始)
+        // $('li:nth-child(odd)').css('background' , 'hotpink'); // 奇數列 背景變色(位址從1開始)
+        // $('li:nth-child(2)').css('background' , 'hotpink'); // 第2列 背景變色(位址從1開始)
+        // $('li:nth-child(3n)').css('background' , 'hotpink'); // 每隔3列 背景變色(位址從1開始)
+        // $('li:nth-child(3n+1)').css('background' , 'hotpink'); // 每隔3n+1列 背景變色(位址從1開始)
+        $('li:nth-last-child(2)').css('background' , 'hotpink'); // 從後面數來第幾個子元素        
+      }        
+      function show3(){
+       // $('#test span:first-of-type').css('background' , 'hotpink'); // 同一種元素的第一個
+       $('#test span:last-of-type').css('background' , 'hotpink'); //同一種元素的最後一個
+       // $('#test span:nth-of-type(2)').css('background' , 'hotpink'); //：同一種元素裏頭的第幾個
+       // $('#test span:nth-last-of-type(2)').css('background' , 'hotpink'); //同一種元素從後面屬過來第幾個
+       // $('#test span:only-of-type').css('background' , 'hotpink'); //只有這種元素        
+      }                                                    
+    </script>   
+  </head>
+  <body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+    </ul>
+    <br>
+    <ul>
+      <li>a</li>
+      <li>b</li>
+      <li>c</li>
+      <li>d</li>
+      <li>e</li>
+      <li>f</li>
+    </ul>
+    <br>
+    <ul>
+        <li>ok</li>
+    </ul>
+    <br>
+    <div id="test" style="width:200px;height:200px;background-color:lightgreen";>
+        <div>1</div>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <div>5</div>
+        <div><span>6</span></div>
+        <div>7</div>
+    </div>    
+    <div style="clear:both">
+     <input type="button" value=":first 效果" onclick="show1()" class="button" >      
+     <input type="button" value=":child 效果" onclick="show2()" class="button" >   
+     <input type="button" value=":of-type  效果" onclick="show3()" class="button" > 
+    </div>  
+   
+    <div>
+      <dl>
+        <dt style="font-size: 2em;color:red;"> child部份 使用說明</dt>
+        <dd><a href="http://www.oxxostudio.tw/articles/201405/css-selector.html" target="_blank">參考網址:</a></dd>  
+        <dd>:first-child：第一個子元素</dd>  
+        <dd>:last-child：最後一個子元素</dd>  
+        <dd>:nth-child(數字)：第幾個子元素</dd>  
+        <dd>:nth-child(2n)：挑出偶數的元素(2的倍數)</dd>  
+        <dd>:nth-child(2n+1)：挑出奇數的元素</dd>  
+        <dd>:nth-last-child(數字)：從後面數來第幾個子元素</dd>  
+        <dd>:only-child：只有一個子元素</dd> 
+        
+        <dt style="font-size: 2em;color:red;"> of-type 部份 使用說明</dt>
+        <dd>:first-of-type：同一種元素的第一個</dd>  
+        <dd>:last-of-type：同一種元素的最後一個</dd>  
+        <dd>:nth-of-type()：同一種元素裏頭的第幾個</dd>  
+        <dd>:nth-last-of-type()：同一種元素從後面屬過來第幾個</dd>  
+        <dd>:only-of-type：只有這種元素</dd>  
+      </dl>            
+      </dl>    
+    </div>  
+  </body>
+</html>

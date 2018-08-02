@@ -30,14 +30,11 @@
       }  
       function show2(){
        var temp1 = $('div:empty');
-       alert(temp1.get(0));  
-       console.log(temp1.get(0));            
-       $.each($('div:empty'), function(i, obj) {
-        // alert(obj);
-       });       
-       for(x in temp1){
-          // console.log(x);
-       }
+       // alert(temp1); // show jquery object --> show [object Object]
+       // console.log(temp1); // show jQuery.fn.init.....       
+       // alert(temp1.get(0)); // html object   --> show [object HTMLDivElement]
+       // console.log(temp1.get(0));// show <div style="background: lightgreen; height: 200px; width: 200px;"></div>            
+
           
        $('div:empty').css('background' , '#ccc').css({
         'height':'200px',
@@ -46,37 +43,20 @@
        }); // 將空div做 高度調整
       }  
       function show3(){
-       $('ul:has(.red)').css('background' , 'hotpink'); // ul 有子元素 red 的背景變色 a1 ~ a6變色       
-       // $('ul').has('.red').css('background' , 'hotpink'); // ul 有子元素 red 的背景變色 a1 ~ a6變色
+       $('ul:has(.red)').css('background' , 'hotpink'); // ul 有子元素 red 的背景變色
+       // $('ul').has('.red').css('background' , 'hotpink'); // ul 有子元素 red 的背景變色
+       $('ul').has('.red').css('background' , 'green');
       }    
       function show4(){
+       $('li').parent().css('background','purple'); // 當前(li) 父元素節點 背景變色
+      //  alert($('li').parent().length);    
        $('div:parent').css('background' , 'hotpink'); 
+      //  alert($('div:parent'));
        $.each($('div:parent'), function(i, obj) {
-        alert(obj.innerText + "   " + obj.tagName + "   " + obj.className);
+        // alert(obj.innerText + "   " + obj.tagName + "   " + obj.className);
         console.log(obj);
        });          
-      }    
-      function show5(){
-       $('li:odd').css('background' , 'hotpink'); // 
-      }      
-      function show6(){
-       $('li:eq(2)').css('background' , 'hotpink'); // 
-      }  
-      function show7(){
-       $('li:gt(2)').css('background' , 'hotpink'); // 
-      }     
-      function show8(){
-       $('li:lt(2)').css('background' , 'hotpink'); // 
-      }  
-      function show9(){
-        // $(':header').css('background' , 'hotpink'); //  H1 H2 H3  背景變色
-        // $('div :header').css('background' , 'hotpink'); //  H1 背景變色 記得 div 後面要有空白
-        $('h2:header').css('background' , 'hotpink'); //  H2 背景變色
-      }  
-      function show10(){
-         $('input').get(0).focus(); // 網頁載入時將 input 設為 focus
-         $('input:focus').css('background' , 'hotpink');
-      }                                                  
+      }                                                    
     </script>   
   </head>
   <body>
@@ -96,7 +76,7 @@
    </ul>
    <hr>
    <div>
-    <input type="button" value="contains" onclick="show1()" class="button" >   
+    <input type="button" value=":contains" onclick="show1()" class="button" >   
     <input type="button" value=":empty" onclick="show2()" class="button" >       
     <input type="button" value=":has" onclick="show3()" class="button" > 
     <input type="button" value=":parent" onclick="show4()" class="button" >                      

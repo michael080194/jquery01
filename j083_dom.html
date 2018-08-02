@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>    
+    <style>
+     .aa1 , .aa2 , .box{
+      float: le÷ft;      
+      /* display: inline-block;   */
+      width: 50px;
+      height: 80px;
+      padding:5px;
+      margin: 10px;
+      border: 3px solid black;
+      background-color:lightyellow
+     }
+
+     .button {
+         background-color: #4CAF50;
+         border: none;
+         color: white;
+         padding: 15px 32px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 4px 2px;
+         cursor: pointer;
+     } 
+
+    </style>   
+
+    <script>
+      $(document).ready(function() {      
+        $('.box').click(function(){
+          alert("123");
+        });              
+      }); 
+
+      function show1(){
+       $('.aa1').clone(true).appendTo('body');      
+      }  
+      function show2(){  
+       $('.aa1').remove(); // 將所有 .aa1 div 元素移除
+      }        
+      function show3(){
+       $('.aa1').empty(); // 清空 .aa1 div 裏面內容但 div 沒刪除
+      }       
+
+      function show4(){
+       $('.aa1').replaceWith('<span> DOM </span>');// 找到 .aa1 div 並用 span 取代 div      
+      }  
+    </script>   
+  </head>
+  <body>
+     <strong>I'm strong</strong>
+     <div class="aa1 box">AA1</div>
+
+     <div class="aa2 box">AA2</div>
+
+     <div class="aa3 box">
+       <em>
+          <strong>I'm strong in em of div</strong>
+       </em>
+     </div>     
+     <br>
+
+    <div style="clear:both;margin:20px">
+     <input type="button" value="copy element" onclick="show1()" class="button"> 
+     <input type="button" value="remove element" onclick="show2()" class="button">   
+     <input type="button" value="empty element" onclick="show3()" class="button" >    
+     <input type="button" value="replaceWith" onclick="show4()" class="button">
+    </div>  
+
+    <div>
+      <dl>
+        <dt style="font-size: 2em;color:red;">使用說明</dt>
+        <dd></dd>     
+      </dl>            
+      </dl>    
+    </div>  
+  </body>
+</html>

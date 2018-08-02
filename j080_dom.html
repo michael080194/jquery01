@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>    
+    <style>
+     .box {
+      float: left;      
+      /* display: inline-block;   */
+      width: 200px;
+      height: 180px;
+      padding:5px;
+      margin: 10px;
+      border: 3px solid black;
+      background-color:lightyellow
+     }
+
+     .button {
+         background-color: #4CAF50;
+         border: none;
+         color: white;
+         padding: 15px 32px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 4px 2px;
+         cursor: pointer;
+     } 
+
+    </style>   
+
+    <script>
+      $(document).ready(function() {      
+              
+      }); 
+
+      function show1(){
+       var str = '<div class="box1">節點測試11 </div>';
+       // var box = $(str); // create 節點 , 應該不用此寫法
+       $('body').append(str); // 插入節點
+       $('.box').append('<strong> DOM1 </strong>');       
+      }  
+      function show2(){  
+          $('.box').append(function(){
+            return '<strong> DOM2 </strong>';
+          });           
+          // $('.box').append(function(index , html){
+          //   return '<strong> DOM2 </strong>'+html;
+          // });
+      }        
+      function show3(){
+       $('strong').appendTo('.box2'); // 將 所有 strong 元素內容移到 .box2 后面          
+       // $('.aa1 strong').appendTo('.box2'); // 將 class aa1 的 strong 元素內容移到 .box2 后面
+      }       
+
+      function show4(){
+       var str = '<div class="box">節點測試11 </div>';
+       // var box = $(str); // create 節點 , 應該不用此寫法
+       $('body').prepend(str); // 插入節點
+       $('.box').prepend('<strong> DOM1 </strong>');       
+      }    
+
+      function show5(){  
+          // $('.box').prepend(function(){
+          //   return '<strong> DOM2 </strong>';
+          // });           
+          $('.box').prepend(function(index , html){
+            return '<strong> DOM2 </strong>'+html;
+          });
+      }  
+      function show6(){
+       $('strong').prependTo('.box2'); // 將 所有 strong 元素內容移到 .box2 后面          
+       // $('.aa1 strong').appendTo('.box2'); // 將 class aa1 的 strong 元素內容移到 .box2 后面
+      }                               
+    </script>   
+  </head>
+  <body>
+     <div class="box aa1">
+      <br>
+      <strong>www.kyc168.com.tw </strong>
+      <h1>peter</h1>      
+     </div>
+
+     <div class="box">
+       <br>
+       <strong>gmail</strong>      
+       <h1>michael</h1>
+     </div>
+
+     <div class="box2">
+      <h1>may</h1>
+     </div>
+     
+     <br>
+
+    <div style="clear:both;margin:20px">
+     <input type="button" value="append" onclick="show1()" class="button"> 
+     <input type="button" value="append by function" onclick="show2()" class="button" >   
+     <input type="button" value="appenTo"  onclick="show3()" class="button" >     
+    </div>  
+
+    <div style="margin:20px">
+     <input type="button" value="prepend" onclick="show4()" class="button"> 
+     <input type="button" value="prepend by function" onclick="show5()" class="button" >   
+     <input type="button" value="prepenTo"  onclick="show6()" class="button" >     
+    </div>  
+
+    <div>
+      <dl>
+        <dt style="font-size: 2em;color:red;">使用說明</dt>
+        <dd></dd>    
+        <dd>append(content) 在指定元素內部後面插入節點 content</dd>         
+        <dd>$('strong').appendTo('.box2'); // 將 所有 strong 元素內容移到 .box2 后面      </dd> 
+        <dd>加到前面的 prepend prependTO 功能和 append appendTo 一樣</dd>               
+      </dl>            
+      </dl>    
+    </div>  
+  </body>
+</html>

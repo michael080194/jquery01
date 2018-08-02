@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>    
+    <style>
+     .button {
+         background-color: #4CAF50;
+         border: none;
+         color: white;
+         padding: 15px 32px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 4px 2px;
+         cursor: pointer;
+     } 
+
+    </style>   
+
+    <script>
+      $(document).ready(function() {                   
+      });     
+      function show1(){
+        alert($('#box').html());
+        $('#box').html('<em> www.michael.net </em>');            
+      }  
+      function show2(){      
+        alert($('#box').text());  
+        $('#box').text('<em> www.michael.net </em>');         
+      }        
+      function show3(){
+        alert($('#aa1').val());  
+        $('#aa1').val("aaaa");          
+      }     
+
+      function show4(){
+        $('div').html(function(index,value){
+           var desc = value;
+           if (index == 0){
+            desc = desc + '<em>123</em>';
+           }
+           return desc;
+        });
+      }          
+    </script>   
+  </head>
+  <body>
+    <div id="box">
+      <strong>www.kyc168.com.tw </strong>
+     </div>
+     <div title="aaa">bbbb</div>
+     <input type="text" value = "冠宇資訊" id="aa1" />
+
+    <div>
+     <input type="button" value="html()" onclick="show1()" class="button" >      
+     <input type="button" value="text()" onclick="show2()" class="button" >   
+     <input type="button" value="val()"  onclick="show3()" class="button" >  
+     <input type="button" value="fn 改變div內容"  onclick="show4()" class="button" >        
+    </div>  
+
+    <div>
+      <dl>
+        <dt style="font-size: 2em;color:red;">使用說明</dt>
+        <dd></dd>    
+      </dl>            
+      </dl>    
+    </div>  
+  </body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>    
+    <style>
+     .aa1 , .aa2 , .box{
+      float: le÷ft;      
+      /* display: inline-block;   */
+      width: 50px;
+      height: 80px;
+      padding:5px;
+      margin: 10px;
+      border: 3px solid black;
+      background-color:lightyellow
+     }
+
+     .button {
+         background-color: #4CAF50;
+         border: none;
+         color: white;
+         padding: 15px 32px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 4px 2px;
+         cursor: pointer;
+     } 
+
+    </style>   
+
+    <script>
+      $(document).ready(function() {      
+              
+      }); 
+
+      function show1(){
+        // $('strong').wrap('<div class="box"></div>'); // 將 strong 元素用 div 包裹
+        $('strong').wrap('<div class="box">'); // 同上功能         
+      }  
+      function show2(){  
+        $('strong').wrap('<div class="box">123</div>'); // 將 strong 元素用 div 包裹(123 是和strong同層同級)
+      }        
+      function show3(){
+        $('strong').wrap('<div class="box"><em></em></div>'); // 將 strong 元素用 同時用 div 及 em 元素包裹 div
+      }       
+
+      function show4(){
+        $('strong').wrap($('div').get(0)); //抓到現有元素div[0],包裹至 strong (含div content) 
+        // $('strong').appendTo('.aa1'); // 將 所有 strong 元素內容移到 .aa1 后面          
+      }  
+
+      function show5(){
+        $('strong').wrap(document.createElement('div')); // 動態產生 div 包裹至 strong
+      }     
+
+      function show6(){
+        $('strong').unwrap(); // 移除包裹自己的元素,第一次是em,第二次是div
+      }                                           
+    </script>   
+  </head>
+  <body>
+     <strong>I'm strong</strong>
+     <div class="aa1 box">AA1</div>
+
+     <div class="aa2 box">AA2</div>
+
+     <div class="aa3 box">
+       <em>
+          <strong>I'm strong in em of div</strong>
+       </em>
+     </div>     
+     <br>
+
+    <div style="clear:both;margin:20px">
+     <input type="button" value="wrap" onclick="show1()" class="button"> 
+     <input type="button" value="wrap with content" onclick="show2()" class="button">   
+     <input type="button" value="wrap with multi element" onclick="show3()" class="button" >    
+     <input type="button" value="用某一元素來包裹自身" onclick="show4()" class="button">
+     <input type="button" value="動態產生元素來wrap"  onclick="show5()" class="button"> 
+     <input type="button" value="unwrap" onclick="show6()" class="button" >    
+    </div>  
+
+    <div>
+      <dl>
+        <dt style="font-size: 2em;color:red;">使用說明</dt>
+        <dd></dd>    
+        <dd>$('div').after(content); // 在 div 后面 插入和 div 同層次的元素</dd> 
+        <dd>$('div').before(content); // 在 div 前面 插入和 div 同層次的元素</dd> 
+        <dd>$('strong').insertAfter('div'); // 將 strong元素 移到 div 后面(同層次的元素)</dd> 
+        <dd>$('strong').insertBefore('div'); // 將 strong元素 移到 div  前面(同層次的元素)</dd> 
+      </dl>            
+      </dl>    
+    </div>  
+  </body>
+</html>

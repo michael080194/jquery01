@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>    
+    <style>
+     .button {
+         background-color: #4CAF50;
+         border: none;
+         color: white;
+         padding: 15px 32px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 4px 2px;
+         cursor: pointer;
+     } 
+
+    </style>   
+
+    <script>
+      $(document).ready(function() {                   
+      });     
+      function show1(){
+       var temp1 = $('.aa1');
+       alert(temp1); // show jquery object --> show [object Object]
+       alert(temp1.text());
+       console.log(temp1); // show jQuery.fn.init.....   
+       console.log(temp1.toString()); // show [object Object]             
+      }  
+
+      function show2(){
+       var temp1 = $('.aa1');
+       alert(temp1.get(0)); // html object   --> show [object HTMLDivElement]
+       alert(temp1.get(0).innerText);     
+       alert(temp1[0]); // html object   --> show [object HTMLDivElement]
+       alert(temp1[0].innerText);              
+       console.log(temp1.get(0));// show <div style="background: lightgreen; height: 200px; width: 200px;"></div> 
+
+       // var temp1 = document.getElementsByClassName('aa1');
+       // alert("11=" + temp1[0]); 
+       // alert("22=" + temp1[0].innerText);                                      
+      }  
+
+      function show3(){
+        $.each($('.aa1'), function(i, obj) {
+         alert(obj); //  show [object HTMLDivElement]
+         alert(obj.innerText); //  show div content(text)
+         alert($(obj).text());
+         for(x in obj){
+          console.log(x); // show 出可用的 property 和 method
+         }     
+
+         $.each(obj, function(i, obj1) {  
+          // console.log(obj1); 
+         });
+
+        });           
+      }
+
+    </script>   
+  </head>
+  <body>
+   <div class="aa1" onclick="showxx1()">John Resig</div>
+   <div>George Martin</div>
+   <div>Malcom John Sinclair</div>
+   <div>J. Ohn</div>
+   <div></div>
+
+   <hr>
+   <div>
+    <input type="button" value="jquery object"  onclick="show1()" class="button"  >   
+    <input type="button" value="html object"    onclick="show2()" class="button" >    
+    <input type="button" value="jquery each"    onclick="show3()" class="button" >                      
+   </div>  
+  
+   <div>
+     <dl>
+       <dt style="font-size: 1.5em;color:red;">jquery 物件使用說明</dt>
+       <dd> 當使用 console.log 顯示 jquery 物件 [object Object]時,會顯示出該物件的 function 內容</dd>     
+       <dd> 要取用物件裡面的值須使用 jquery的方法或屬性;如 alert(temp1.text())</dd> 
+
+       <dt style="font-size: 1.5em;color:red;">html 物件使用說明</dt>
+       <dd> 當使用 console.log 顯示 html 物件 [object HTMLDivElement]時,會顯示出該元素的 內容(類似function)</dd>
+       <dd> 要取用物件裡面的值須使用 html的方法或屬性;如 alert(temp1.get(0).innerText)</dd>  
+       <dd> 其實他是抓 javascript 原生物件</dd>   
+               
+       <dt style="font-size: 1.5em;color:red;">.each 使用說明</dt>
+       <dd> 當使用 $.each(...) 抓出來的物件是 [object HTMLDivElement]</dd>
+       <dd> 要抓取物件內容 alert(obj.innerText)</dd> 
+       <dd> 所以若要使用  jquery 的方法 須轉換成 alert($(obj).text()); </dd>   
+       
+       <dt style="font-size: 1.5em;color:red;"> for 使用說明</dt>
+       <dd> 當使用 for(x in obj){...} 可顯出該物件可使用的所有 method 和 property</dd>   
+       <dd> 當使用 $.each(obj, function(i, obj1){...}) 可顯出該物件所有 method 和 property的值</dd>           
+     </dl>    
+   </div>  
+  </body>
+</html>

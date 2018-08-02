@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>    
+    <style>
+     .button {
+         background-color: #4CAF50;
+         border: none;
+         color: white;
+         padding: 15px 32px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 4px 2px;
+         cursor: pointer;
+     } 
+
+    </style>   
+
+    <script>
+      $(document).ready(function() {                   
+      });     
+  
+      function show4(){
+        var temp1 = $('input[type=radio]:eq(0)'); // jquery object 
+        var temp2 = $('input[type=radio]:eq(0)')[0]; // HTML object HTMLInputElement 
+        // alert(temp1.val());
+        // alert(temp2.value);        
+        // temp1.next().text("MAN")
+        // temp1.attr("value","MAN");
+        // $('input:radio[name=sex]:nth(1)').prop('checked',true)
+        // temp1.attr("checked",true);    
+        var temp1 = $('input[name=sex]:checked'); 
+        if(temp1.val() == "男"){
+          $("input[type=radio]:nth(1)").prop('checked',true);
+        }else{
+         $("input[type=radio]:nth(0)").prop('checked',true);
+        }       
+      } 
+      function show5(){
+       var temp1 = $('input[name=sex]:checked'); // jquery object        
+        alert(temp1.val());     
+      }   
+      function show6(){
+        $("input[name='user_active_col']").prop("checked", true);       
+        var temp1 = $('input[type=checkbox]:checked'); // jquery object 
+        alert(temp1.length);                   
+      }     
+      function show7(){
+        // $("input[name='user_active_col']").prop("checked", false); 
+        $("input[name='user_active_col']").eq(0).prop("checked", false); // 設定某個checkbox              
+      }   
+
+      function show10(){
+       // $("#sel").append($("<option></option>").text("toyota"));
+       $("#sel").append($("<option></option>").attr("value", "5").text("toyota"));
+      }      
+
+      function show11(){
+        alert($("#sel").find(":selected").text());
+        alert($("#sel").find(":selected").val());        
+      }  
+
+      function show12(){
+        // $("#sel").find(":selected").remove();
+        $("#sel option").remove();        
+      }          
+    </script>   
+  </head>
+  <body>
+     <input type="radio" name="sex" id="male" value = "男" >
+     <label for="male">Male</label>
+     <input type="radio" name="sex" id="female" value = "女">
+     <label for="female">Female</label>
+
+     <br>
+     <input name="user_active_col" type="checkbox" value="1"> 1
+     <input name="user_active_col" type="checkbox" value="2" checked> 2
+     <input name="user_active_col" type="checkbox" value="3"> 3
+     <input name="user_active_col" type="checkbox" value="4"> 4
+     <input name="user_active_col" type="checkbox" value="5"> 5
+     <input name="clickAll" id="clickAll" type="checkbox"> 全選
+
+     <br>     
+     <select id="sel">
+       <option value="1">Volvo</option>
+       <option value="2" selected="selected">Saab</option>
+       <option value="3">Mercedes</option>
+       <option value="4">Audi</option>
+     </select>
+
+    <div>
+     <input type="button" value="set radio"  onclick="show4()" class="button" >     
+     <input type="button" value="get radio value"  onclick="show5()" class="button" >
+     <input type="button" value="set checkbox true"  onclick="show6()" class="button" >    
+     <input type="button" value="set checkbox false"  onclick="show7()" class="button" >    
+    </div>  
+   
+    <div>
+     <input type="button" value="add option" onclick="show10()" class="button" >  
+     <input type="button" value="get option" onclick="show11()" class="button" > 
+     <input type="button" value="remove option" onclick="show12()" class="button" >
+    </div>  
+
+    <div>
+      <dl>
+        <dt style="font-size: 2em;color:red;">使用說明</dt>
+        <dd><a href="https://cythilya.github.io/2017/09/10/jquery-attr-vs-prop/" target="_blank">參考網址:</a></dd>  
+        <dd>Attribute 永遠都是呈現初始值，與目前狀態無關，因此檢視 HTML 原始碼時是看不出變化的。</dd>  
+        <dd>Property 會反映目前狀態。</dd>  
+        <dd><a href="https://dotblogs.com.tw/alanjiang/2011/01/26/21061" target="_blank">使用jQuery對 select 的操作</a></dd>         
+      </dl>            
+      </dl>    
+    </div>  
+  </body>
+</html>

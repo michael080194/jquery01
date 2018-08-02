@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>    
+    <style>
+     .button {
+         background-color: #4CAF50;
+         border: none;
+         color: white;
+         padding: 15px 32px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 4px 2px;
+         cursor: pointer;
+     } 
+
+    </style>   
+
+    <script>
+      $(document).ready(function() {                   
+      });     
+      function show1(){
+       alert($('.red').is('li')); // html element
+       // alert($('.red').is($('li')));  // jquery object , 此寫法同上   
+       // alert($('.red').is($('li').get(2))); // 判斷class red 是否為 li (指標2)
+       // alert($('.red').is($('li').eq(2))); // 判斷class red 是否為 li (指標2)   
+       // alert($('.red').is(function(){
+       //     return $(this).attr('title') == "list3";
+       // }));                
+      }  
+      function show2(){      
+        alert($('li').eq(2).hasClass('red')); // 判斷 li(2) 是否為 class red   
+      }        
+      function show3(){
+        // $('li').slice(2,4).css('background','red'); // 2(index 0開始算) 4(index 1倒始開始算)
+        // $('li').slice(2).css('background' , 'red'); // 2(index 0開始算) 以後背景變色
+        // $('li').slice(0,-2).css('background' , 'red'); // 從 前面0開始 , 到倒數第2個不算
+        $('#box li').slice(2,-2).css('background' , 'red'); // 從前面2開始 , 到倒數第2個不算
+      }  
+      function show4(){      
+       // $('#box').find('li').end().css('background' , 'red'); // li 的上一層 即 ul
+       $('#box').find('li').parent().css('background' , 'red'); // li 的父親 即 ul(同上)
+       // end 應該解釋為 緊鄰的上一個元素       
+      } 
+      function show5(){      
+       // alert($('div:first').children().length); // 子元素個數
+       // console.log($('div:first').children());
+       alert($('div:first').contents().length); // 文本個數
+       alert($('div:first').contents().eq(0).text()); // 取得文本第0個 text
+      }    
+      function show6(){      
+       // $('li').filter('.red ,:first ,:last').css('background' , 'red'); // class 為 red 的li,還有 first last  背景變色
+       //下面寫法 選定 class == red 且 title == list3 的 li 背景變色
+       $('li').filter(function(){
+         alert($(this).get(0));
+         return $(this).attr('class')== 'red' && $(this).attr('title')== 'list3';
+       }).css('background' , 'red')
+      }                                                                                  
+    </script>   
+  </head>
+  <body>
+    <div id="div1">
+      冠宇資訊 www.kyc168.com.tw
+      <strong> aaaa</strong>
+      sssss
+     </div>
+     <div> 冠宇資訊 michael1.cp35.secserverpros.com</div>
+     <div style="display:no ne;"> 測試網頁 www.google.com</div>
+     <div class="red"></div>
+     <ul id="box">
+       <li>list1 a1</li>
+       <li>list1 a2</li>
+       <li class="red" title="list3">list1 a3</li>
+       <li class="red" >list1 a4</li>
+       <li>list1 a5</li>
+       <li>list1 a6</li>
+     </ul>
+     <ul id="box2">
+       <li>list1 b1</li>
+       <li>list1 b2</li>
+       <li>list1 b3</li>
+       <li>list1 b4</li>
+       <li>list1 b5</li>
+       <li>list1 b6</li>
+     </ul>
+     <ul>
+       <li>list1 c1</li>
+     </ul>
+     <h3> H3 </h3>
+     <h2> H2 </h2>
+     <div>
+       <h1>H1</h1>
+     </div>
+     <input type ="text">
+
+    <div>
+     <input type="button" value="判斷 .red 是否為li" onclick="show1()" class="button" >      
+     <input type="button" value="hasClass" onclick="show2()" class="button" >   
+     <input type="button" value="slice" onclick="show3()" class="button" > 
+     <input type="button" value="end" onclick="show4()" class="button" >     
+     <input type="button" value="contents" onclick="show5()" class="button" >  
+     <input type="button" value="filter" onclick="show6()" class="button" >              
+    </div>  
+   
+  </body>
+</html>

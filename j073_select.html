@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>    
+    <style>
+     .button {
+         background-color: #4CAF50;
+         border: none;
+         color: white;
+         padding: 15px 32px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 4px 2px;
+         cursor: pointer;
+     } 
+
+    </style>   
+
+    <script>
+      $(document).ready(function() {      
+        // $($('div').eq(0)).click(function(){
+        //    alert("11");
+        //    $(this).toggleClass(function(){
+        //      return $(this).hasClass('red')?'green' : 'red';
+        //    });
+        //  });       
+        $($('div').eq(0)).click(function(){
+          $(this).toggleClass(function(){
+            if($(this).hasClass('red')){
+              $(this).removeClass('red');
+              return 'green';
+            }else{
+              $(this).removeClass('green');
+              return 'red';
+            }
+           });
+        });                    
+      }); 
+
+      function show1(){
+       alert($('div').css('color'));  
+      }  
+      function show2(){      
+        // $('div').eq(0).css('color','green'); 
+        // $('div').css('color','green').css('background-color','red');        
+        // 一次設定多個屬性
+        $('div').eq(0).css({
+          'color' : 'green',
+          'height' : '200px',
+          'width' : '200px',
+          'background-color':'red'
+        });   
+
+        // $('div').css('width',function(index , value){
+        //     alert(value);
+        //     return parseInt(value) - 50 + "px";
+        // });             
+      }        
+      function show3(){
+        var box = $('div').eq(1).css(['color','width','height']);
+        // javascrip 語法
+        for (var i in box) {
+          console.log(i + ":" + box[i]);
+        };
+        // jquery 語法
+        // $.each(box , function(attr , value){
+        //   alert(attr+":"+value);
+        // });
+      }       
+
+      function show4(){
+        $('div').each( function(index , element){
+         alert(index+":"+element + ":" + element.tagName);
+        });
+      }    
+
+      function show5(){
+       $('div').addClass('red bg');  // 新增 class
+      }      
+
+      function show6(){
+       $('div').removeClass('bg');  // 移除 class   
+      }                       
+    </script>   
+  </head>
+  <body>
+     <div id="box">
+      <strong>www.kyc168.com.tw </strong>
+     </div>
+     <div title="aaa">bbbb</div>
+     <input type="text" value = "冠宇資訊" id="aa1" />
+
+    <div>
+     <input type="button" value="取得CSS color 屬性值" onclick="show1()" class="button"> 
+     <input type="button" value="設定 CSS 屬性值" onclick="show2()" class="button" >   
+     <input type="button" value="一次讀取多個 CSS 屬性值"  onclick="show3()" class="button" >  
+     <input type="button" value="讀取 div"  onclick="show4()" class="button" > 
+     <input type="button" value="add class"  onclick="show5()" class="button" >       
+     <input type="button" value="移除 class"  onclick="show6()" class="button" >         
+    </div>  
+
+    <div>
+      <dl>
+        <dt style="font-size: 2em;color:red;">使用說明</dt>
+        <dd></dd>    
+      </dl>            
+      </dl>    
+    </div>  
+  </body>
+</html>
