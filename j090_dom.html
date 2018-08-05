@@ -18,7 +18,7 @@
       background-color:lightyellow
      }
 
-     .button {
+     input[type=button] {
          background-color: #4CAF50;
          border: none;
          color: white;
@@ -38,8 +38,23 @@
          $('#bt1').bind('click',function() {
            alert("button 1");
          });   
-           
-         $('#bt2').bind('click',fn);              
+
+         $('#bt2').bind('click',fn); 
+
+         // 同時 bind 多個事件做同一function
+         $('#bt3').bind('click mouseover',function() {
+           alert("button 3");
+         });   
+          
+         // 同時 bind 多個事件,不同事件做不同function
+         $('#bt4').bind({
+           mouseover:function(){
+              alert("移入");
+           },
+           mouseout:function(){
+             alert("移出");
+           }
+         });                      
       }); 
 
       function fn(){
@@ -52,9 +67,11 @@
 
     <form>
       <input type="button" id="bt1" value="按鈕1"/>   
-      <input type="button" id="bt2" value="按鈕2"/>         
+      <input type="button" id="bt2" value="按鈕2"/>  
+      <input type="button" id="bt3" value="按鈕3"/>  
+      <input type="button" id="bt4" value="show div"/>                     
     </form>
-
+    <div></div>
     <br>
 
 
