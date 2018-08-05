@@ -35,16 +35,24 @@
 
     <script>
       $(document).ready(function() {      
-     
+         $('#bt1').bind('click',function() {
+           alert("button 1");
+         });   
+           
+         $('#bt2').bind('click',fn);              
       }); 
 
+      function fn(){
+        alert("button 2");
+      }
 
     </script>   
   </head>
   <body>
 
     <form>
-      <input type="button" value="Input Button"/>   
+      <input type="button" id="bt1" value="按鈕1"/>   
+      <input type="button" id="bt2" value="按鈕2"/>         
     </form>
 
     <br>
