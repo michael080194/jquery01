@@ -38,52 +38,17 @@
      
       }); 
 
-      function show1(){
-       alert($('input').eq(1).val());
-       alert($('input[type=password]').val());
-       alert($(':password').val());       
-       alert($('input[name=user]').val());  
 
-       alert($(':input').length); // :input 选择所有 input, textarea, select 和 button 元素  
-       alert($('input').length); //  input 選到所有 input 物素           
-      }  
-      function show2(){  
-       alert($(':button').length); // input  和 button
-       alert($("button, input[type='button']").length);       
-      }        
-      function show3(){
-       alert($(':checkbox').length); //
-       alert($('[type=checkbox]').length); //       
-      }       
-
-      function show4(){
-       $('.aa1').replaceWith('<span> DOM </span>');// 找到 .aa1 div 並用 span 取代 div      
-      }  
     </script>   
   </head>
   <body>
-    <input type="hidden"     name="user" value="123" />  
-    <textarea></textarea>  
 
     <form>
       <input type="button" value="Input Button"/>   
-      <input type="checkbox" />        
-      <input type="hidden"     name="user" value="123" />
-      <input type="password" name="pass" value="456" />
-      <input type="radio" name="sex" value="男" />男
-      <input type="radio" name="sex" value="女" />女
-      <textarea> </textarea>
-      <select name="city"> </select>
-      <button> </button>
     </form>
 
     <br>
 
-    <div style="clear:both;margin:20px">
-     <input type="button" value=":input" onclick="show1()" class="button"> 
-     <input type="button" value=":button" onclick="show2()" class="button">   
-     <input type="button" value=":checkbox" onclick="show3()" class="button" >    
-    </div>  
 
     <div>
       <dl>
