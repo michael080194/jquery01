@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>    
+    <style>
+     .aa1 , .aa2 , .box{
+      float: le÷ft;      
+      /* display: inline-block;   */
+      width: 50px;
+      height: 80px;
+      padding:5px;
+      margin: 10px;
+      border: 3px solid black;
+      background-color:lightyellow
+     }
+
+     .button {
+         background-color: #4CAF50;
+         border: none;
+         color: white;
+         padding: 15px 32px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 4px 2px;
+         cursor: pointer;
+     } 
+
+    </style>   
+
+    <script>
+      $(document).ready(function() {      
+     
+      }); 
+
+      function show1(){
+       alert($('input').eq(1).val());
+       alert($('input[type=password]').val());
+       alert($(':password').val());       
+       alert($('input[name=user]').val());  
+
+       alert($(':input').length); // :input 选择所有 input, textarea, select 和 button 元素  
+       alert($('input').length); //  input 選到所有 input 物素           
+      }  
+      function show2(){  
+       alert($(':button').length); // input  和 button
+       alert($("button, input[type='button']").length);       
+      }        
+      function show3(){
+       alert($(':checkbox').length); //
+       alert($('[type=checkbox]').length); //       
+      }       
+
+      function show4(){
+       $('.aa1').replaceWith('<span> DOM </span>');// 找到 .aa1 div 並用 span 取代 div      
+      }  
+    </script>   
+  </head>
+  <body>
+    <input type="hidden"     name="user" value="123" />  
+    <textarea></textarea>  
+
+    <form>
+      <input type="button" value="Input Button"/>   
+      <input type="checkbox" />        
+      <input type="hidden"     name="user" value="123" />
+      <input type="password" name="pass" value="456" />
+      <input type="radio" name="sex" value="男" />男
+      <input type="radio" name="sex" value="女" />女
+      <textarea> </textarea>
+      <select name="city"> </select>
+      <button> </button>
+    </form>
+
+    <br>
+
+    <div style="clear:both;margin:20px">
+     <input type="button" value=":input" onclick="show1()" class="button"> 
+     <input type="button" value=":button" onclick="show2()" class="button">   
+     <input type="button" value=":checkbox" onclick="show3()" class="button" >    
+    </div>  
+
+    <div>
+      <dl>
+        <dt style="font-size: 2em;color:red;">使用說明</dt>
+        <dd>jquery 透過 .bind來綁定下列 JavaScript 事件</dd>
+        <dd>
+        常用事件:click，click，dblclick，mousedown，mouseup，mousemove，mouseover，mouseout，</dd>  
+        <dd>change，select，submit，keydown，keypress，blur，focus，load，resize,scroll，error</dd>  
+      </dl>            
+      </dl>    
+    </div>  
+  </body>
+</html>
