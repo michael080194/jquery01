@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>    
+    <style>
+     .aa1 , .aa2 , .box{
+      float: le÷ft;      
+      /* display: inline-block;   */
+      width: 50px;
+      height: 80px;
+      padding:5px;
+      margin: 10px;
+      border: 3px solid black;
+      background-color:lightyellow
+     }
+
+     input[type=button],input[type=submit] {
+         background-color: #4CAF50;
+         border: none;
+         color: white;
+         padding: 15px 32px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 4px 2px;
+         cursor: pointer;
+     } 
+
+    </style>   
+
+    <script>
+      $(document).ready(function() {      
+         // $('#bt1').bind('click',function() {
+         //   alert("click 1");
+         // }); 
+         $('#bt1').click(function(){
+           alert("click 2");
+         });   
+
+         // $('#txt1').bind('select',function() {
+         //   alert("input select 1");
+         // }); 
+         $('#txt1').select(function(){
+           alert("input select 2");
+         });   
+
+         // $('#txt1').bind('change',function() {
+         //   alert("input change 1");
+         // }); 
+         $('#txt1').change(function(){ // input 被修改
+          alert("input change 2");
+         });
+
+         // $('form').bind('submit',function() {
+         //   alert("submit 1");
+         // }); 
+
+         $('form').submit(function(){ // 表單提交
+          alert("submit 2");
+         });
+      });   
+
+
+
+    </script>   
+  </head>
+  <body>
+
+    <form>
+      <input type="text"   id="txt1" value = "ABC"> 
+
+      <input type="button" id="bt1"  value="click 事件簡寫">   
+      <input type='submit' id="bt2"  value='Submit'>                
+    </form>
+    <div></div>
+    <br>
+
+ 
+    <div>
+      <dl>
+        <dt style="font-size: 2em;color:red;">使用說明</dt>
+      </dl>            
+      </dl>    
+    </div>  
+  </body>
+</html>
