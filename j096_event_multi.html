@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>   -->
+    <script src="https://code.jquery.com/jquery-migrate-1.2.1.js"></script>        
+    <style>
+     input[type=button],input[type=submit] {
+         background-color: #4CAF50;
+         border: none;
+         color: white;
+         padding: 15px 32px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 4px 2px;
+         cursor: pointer;
+     } 
+
+    </style>   
+
+    <script>
+      $(document).ready(function() {      
+        $("#div1").hover(function() {
+          $(this).css('background','red'); // 同 mouseenter
+        }, function() {
+          $(this).css('background','green'); // 同 mouseleave
+        });
+
+        // toggle 此用法在新版已停用,若要使用則要下載  jquery-migrate-1.2.1.min.js
+        // $("#div2").toggle(function(){
+        //  $(this).css('background','red');
+        // },function(){
+        //  $(this).css('background','green');
+        // },function(){
+        //  $(this).css('background','lightyellow');
+        // });
+
+        // 若不想用舊版 toggle可以自行寫程式來達到相同功能
+        var flag = 1;
+        $("div").click(function(){
+         if(flag == 1){
+           $(this).css('background','red');
+           flag = 2;
+         }else if(flag == 2){
+          $(this).css('background','blue');
+          flag = 3;
+         }else if(flag == 3){
+          $(this).css('background','lightyellow');
+          flag = 1;
+         }
+        });
+
+      });   
+
+    </script>   
+  </head>
+  <body>
+
+    <div style="width: 200px;height: 200px;background: green;" id="div1">
+    </div> 
+
+    <div style="width: 200px;height: 200px;background: lightyellow;" id="div2">
+    </div> 
+
+    <br>
+
+ 
+    <div>
+      <dd>
+        <dt style="font-size: 2em;color:red;">使用說明</dt>
+        <dd>toggle 此用法在新版已停用,若要使用則要下載  jquery-migrate-1.2.1.min.js</dd>
+      </dl>            
+      </dl>    
+    </div>  
+  </body>
+</html>
