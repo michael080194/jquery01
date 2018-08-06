@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>   -->
+    <script src="https://code.jquery.com/jquery-migrate-1.2.1.js"></script>        
+    <style>
+     input[type=button],input[type=submit] {
+         background-color: #4CAF50;
+         border: none;
+         color: white;
+         padding: 15px 32px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 4px 2px;
+         cursor: pointer;
+     } 
+
+    </style>   
+
+    <script>
+      $(document).ready(function() {  
+         $(document).click(function(event){
+            var x = event.pageX;   // 相對於使用區(document)的位置
+            var y = event.screenX; // 距離實體 scrren 的位置
+            var z = event.clientX; // 固定於使用區(document)的位置
+            // 上面三個值都一樣
+            var coor = "pageX: " + x + ", screenX: " + y + ", clientX: " + z;
+            // alert(coor);
+
+            var x = event.pageY;   // 相對於使用區(document)的位置(多個 div讓畫面有捲軸)
+            var y = event.screenY; // 距離實體 scrren 的位置
+            var z = event.clientY; // 固定於使用區(document)的位置
+            var coor = "pageY: " + x + ", screenY: " + y + ", clientY: " + z;
+            // alert(coor);            
+         });  
+
+         $("#bt1").click(function(e){
+           return 123;
+         });
+         $("#bt1").click(function(e){
+           alert(e.result); // 返回此元素上一次return value
+         });     
+
+         $("#bt2").click(function(e){
+           alert(e.timeStamp); // 時間戳                   
+         });
+
+         $("#bt3").mousedown(function(e){
+           alert(e.which); //1:按滑鼠左鍵  2:中間鍵  3:按滑鼠右鍵             
+         });
+   
+         // $("#txt1").keyup(function(e){
+         //   alert(e.which); // 得到你輸入鍵盤的 ascii
+         // });
+
+         // $("#txt1").click(function(e){
+         //   alert(e.shiftKey); // 是否同時按 shift 鍵
+         // });
+          
+         // $("#txt1").click(function(e){
+         //   alert(e.altKey); // 是否同時按 alt(MAC option鍵) 鍵
+         // });
+          
+         $("#txt1").click(function(e){
+           alert(e.ctrlKey); // 是否同時按 ctrl 鍵
+         });         
+      });         
+    </script>   
+  </head>
+  <body>
+
+
+    <input type="text" id="txt1">
+    <input type="button" value="返回上一次return value" id="bt1">
+    <input type="button" value="時間戳記" id="bt2">
+    <input type="button" value="偵測滑鼠按鍵" id="bt3">    
+    <br>
+
+ 
+    <div>
+      <dl>
+        <dt style="font-size: 2em;color:red;">使用說明</dt>
+        <div>1</div><div>1</div><div>1</div><div>1</div><div>1</div><div>1</div><div>1</div>
+        <div>1</div><div>1</div><div>1</div><div>1</div><div>1</div><div>1</div><div>1</div>
+        <div>1</div><div>1</div><div>1</div><div>1</div><div>1</div><div>1</div><div>1</div>
+        <div>1</div><div>1</div><div>1</div><div>1</div><div>1</div><div>1</div><div>1</div>        <div>1</div><div>1</div><div>1</div><div>1</div><div>1</div><div>1</div><div>1</div>
+        <div>1</div><div>1</div><div>1</div><div>1</div><div>1</div><div>1</div><div>1</div>
+        <div>1</div><div>1</div><div>1</div><div>1</div><div>1</div><div>1</div><div>1</div>
+        <div>1</div><div>1</div><div>1</div><div>1</div><div>1</div><div>1</div><div>1</div>        
+      </dl>    
+    </div>  
+  </body>
+</html>
