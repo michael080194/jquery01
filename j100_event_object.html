@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>   -->
+    <script src="https://code.jquery.com/jquery-migrate-1.2.1.js"></script>        
+    <style>
+     input[type=button],input[type=submit] {
+         background-color: #4CAF50;
+         border: none;
+         color: white;
+         padding: 15px 32px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 4px 2px;
+         cursor: pointer;
+     } 
+
+    </style>   
+
+    <script>
+      $(document).ready(function() {      
+         $("#bt1").click(function(e){
+             // alert(e);
+             console.log(e);
+             alert(e.type) // 獲得這個事件的類型 如 click 
+             alert(e.target) // 獲得綁定事件的DOM元素 如 object HTMLInputElement;也就是得到觸發元素的DOM 就是你點那個就是那個                         
+         });
+
+         $("#div1").click(function(e){
+           alert(e.target);//得到觸發元素的DOM 就是你點那個就是那個
+           console.log(e.target.innerText); //         
+           alert(e.currentTarget); // 得到監聽元素的DOM 就是你綁定那個 就是那個 ; 和 this 一樣 
+           alert(this); // this == e.currentTarget
+         });  
+
+         // relatedTarget 是得到監聽元素的DOM 最近的那個元素
+         $("span").mouseover(function(e){
+          alert(e.relatedTarget);
+         }); 
+
+         $("#bt2").click([1,2,3,'a'],function(e){
+          alert(e.data[3]);
+         });
+          
+         $("#bt3").click({user:'lee','age':28},function(e){
+          alert(e.data.user);
+         });         
+      });         
+    </script>   
+  </head>
+  <body>
+
+
+    <div style="width: 200px;height: 200px;background:lightgreen;margin:30px" id="div1">
+      <span style="width: 100px;height: 100px;background:purple;display: block;">aaa</span>
+    </div>
+    <input type="button" value="button" id="bt1">
+    <input type="button" value="傳參數by array" id="bt2">
+    <input type="button" value="傳參數by object" id="bt3">    
+    <br>
+
+ 
+    <div>
+      <dl>
+        <dt style="font-size: 2em;color:red;">使用說明</dt>
+        <dd>toggle 此用法在新版已停用,若要使用則要下載  jquery-migrate-1.2.1.min.js</dd>
+        <dd>hover效果如同 mouseenter  mouseleave </dd>
+      </dl>    
+    </div>  
+  </body>
+</html>
