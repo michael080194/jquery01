@@ -1,3 +1,8 @@
+# 參考網址
+1. https://api.jquery.com/     英文版 jQuery API 文檔
+2. https://www.jquery123.com/  簡體版 jQuery API 中文文檔
+3. https://www.w3schools.com/Jquery/default.asp 英文版 教程
+4. http://www.w3school.com.cn/jquery/jquery_reference.asp 簡體版 教程
 
 # 學習 Jquery 的先前準備事項
 1. HTML5
