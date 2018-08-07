@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>   -->
+    <script src="https://code.jquery.com/jquery-migrate-1.2.1.js"></script>        
+    <style>
+     input[type=button],input[type=submit] {
+         background-color: #4CAF50;
+         border: none;
+         color: white;
+         padding: 15px 32px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 4px 2px;
+         cursor: pointer;
+     } 
+
+    </style>   
+
+    <script>
+      $(document).ready(function() {  
+        // 單純的 input 元素 trigger 和 triggerHandler 一樣
+        // $("#txt1").click(function(e){
+        //    alert("簡寫模擬事件 by trigger");
+        //  }).trigger('click');// 網頁一載入 模擬用戶點擊事件(只執行一次) 
+          
+        // $("#txt1").click(function(e){
+        //   alert("簡寫模擬事件 by triggerHandler");
+        // }).triggerHandler('click');// 網頁一載入 模擬用戶點擊事件(只執行一次)  
+
+        // form submit trigger 和 triggerHandler 操作結果一樣              
+        // trigger提交後跳轉 沒阻止默認行為
+        // $("form").trigger('submit');
+
+        // 下面為上面的原意
+        // $("form").submit(function(e){
+        // }).trigger('submit');
+        
+           // 提交後沒有跳轉 默認行為被阻止
+           // $("form").triggerHandler('submit');
+           // 下面的程式代碼模擬了上面意思
+           $("form").submit(function(e){
+             e.preventDefault();  // 阻止默認
+           }).trigger('submit');        
+      });         
+    </script>   
+  </head>
+  <body>
+
+    <br>
+    <input type="button" value="按鈕" id="txt1">
+    <form action="123.html">
+      <input type="submit" value="submit" id="txt1">
+    </form>
+    <br>
+ 
+    <div>
+      <dl>
+        <dt style="font-size: 2em;color:red;">使用說明</dt>
+        <dd>以 form 的 submit 來解釋差異</dd>
+        <dd>trigger 提交後跳轉 沒阻止默認行為</dd>
+        <dd>triggerHandler 提交後沒有跳轉 默認行為被阻止</dd>
+      </dl>    
+    </div>  
+  </body>
+</html>
