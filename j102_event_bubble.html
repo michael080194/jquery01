@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>   -->
+    <script src="https://code.jquery.com/jquery-migrate-1.2.1.js"></script>        
+    <style>
+     input[type=button],input[type=submit] {
+         background-color: #4CAF50;
+         border: none;
+         color: white;
+         padding: 15px 32px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 4px 2px;
+         cursor: pointer;
+     } 
+
+    </style>   
+
+    <script>
+      $(document).ready(function() {  
+
+         $("#txt1").click(function(e){
+          e.stopPropagation();          
+          alert("input");     
+         });
+
+         $("#div1").click(function(e){
+          e.stopPropagation();               
+          alert("div");
+         });         
+      
+         $(document).click(function(e){
+          alert("document");
+         });   
+
+         // 阻止 document 按右鍵出現 menu
+         // $(document).bind("contextmenu", function(e) {
+         //     return false;
+         // });
+
+         // 這種方法 阻止 document 按右鍵出現 menu  無效
+         // $(document).mousedown(function(e) {
+         //   if( e.button == 2 ) {
+         //       e.preventDefault();
+         //       alert('Sorry, this functionality is disabled!');
+         //       return false;
+         //   } else {
+         //       return true;
+         //   }
+         // });
+
+         // 阻止默認行為
+         // $("a").click(function(e){
+         //   e.preventDefault();
+         //   alert("aaaa");
+         // }); 
+         // 阻止表單提交
+         // $("#txt2").click(function(e){
+         //     e.preventDefault(); // 防止表單提交
+         //     alert("表單提交");
+         //   });
+        
+         $("form").click(function(e){
+             e.preventDefault(); // 防止表單提交
+           });
+        
+          // 同時阻止冒泡和默認行為發生
+          $("a").click(function(e){
+            e.stopPropagation(); // 阻止冒泡
+            e.preventDefault();  // 阻止默認
+            alert("a href");
+          });
+        
+          // $("a").click(function(e){
+          //   alert("a href");
+          //   return false; // 這一行 同時阻止冒泡和默認行為發生
+          // });                     
+      });         
+    </script>   
+  </head>
+  <body>
+
+    <div style="width: 200px;height: 200px;background:#ccc" id="div1">
+      <input type="text" value="按鈕" id="txt1">
+    </div>
+    <br>
+    <form action="http://www.kyc168.com.tw">
+       <div style="width: 200px;height: 200px;background:#ccc">
+         <input type="submit" value="按鈕" id="txt2">
+         <a href="http://www.kyc168.com.tw" target="_blank">冠宇資訊</a>
+       </div>
+    </form> 
+
+    <br>
+
+ 
+    <div>
+      <dl>
+        <dt style="font-size: 2em;color:red;">使用說明</dt>
+        
+      </dl>    
+    </div>  
+  </body>
+</html>
