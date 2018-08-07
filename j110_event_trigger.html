@@ -42,7 +42,12 @@
          
         $("#txt1").click({user:"chang"} , function(e , data1 , data2, data3,data4){
           alert(data1 + "|" + data2+ "|" + data3[1]+ "|" + data4.user+ "|" + e.data.user);
-        }).trigger('click',[123,'abc' , ['d','e','f'] , {user:"lee"}]);// 網頁一載入傳參 模擬用戶點擊事件(只執行一次)         
+        }).trigger('click',[123,'abc' , ['d','e','f'] , {user:"lee"}]);// 網頁一載入傳參 模擬用戶點擊事件(只執行一次)  
+
+        // 自訂義事件
+        // $("input").bind('myEvent',function(){
+        //    alert("自訂義事件");
+        // }).trigger('myEvent');               
       });         
     </script>   
   </head>
