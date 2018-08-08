@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>   -->
+    <script src="https://code.jquery.com/jquery-migrate-1.2.1.js"></script>        
+    <style>
+     input[type=button],input[type=submit] {
+         background-color: #4CAF50;
+         border: none;
+         color: white;
+         padding: 15px 32px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 4px 2px;
+         cursor: pointer;
+     } 
+
+    </style>   
+
+    <script>
+      $(document).ready(function() {  
+        // 況狀一: trigger會冒泡
+        var index = 1;
+        $("div").bind('myEvent',function(){
+          alert("aaaa"+index);
+          index ++; 
+        });
+        $(".d3").trigger('myEvent');
+       
+        // 況狀二: triggerHandler 不會冒泡
+        // var index = 1;        
+        // $("div").bind('myEvent',function(){
+        //   alert("aaaa"+index);
+        //   index ++;         
+        // });
+        // $(".d3").triggerHandler('myEvent');
+
+      });         
+    </script>   
+  </head>
+  <body>
+
+    <br>
+       <div class="d1">
+         <div class="d2">
+             <div class="d3">
+                 dddd
+             </div>
+         </div>
+       </div>   
+    <br>
+ 
+    <div>
+      <dl>
+        <dt style="font-size: 2em;color:red;">使用說明</dt>
+        <dd>trigger會冒泡  triggerHandler 不會冒泡</dd>
+      </dl>    
+    </div>  
+  </body>
+</html>
