@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>   -->
+    <script src="https://code.jquery.com/jquery-migrate-1.2.1.js"></script>        
+    <style>
+     input[type=button],input[type=submit] {
+         background-color: #4CAF50;
+         border: none;
+         color: white;
+         padding: 15px 32px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 4px 2px;
+         cursor: pointer;
+     } 
+
+    </style>   
+
+    <script>
+      $(document).ready(function() {  
+        // 況狀一: 沒有 命名空間 
+        // $("input").bind('click' , function(){
+        //   alert("abc");
+        // });
+
+        // $("input").bind('click' , function(){
+        //   alert("xyz");
+        // });
+
+        // $("input").trigger('click');
+
+        // 況狀二: 移除 input  click 
+        // $("input").unbind('click'); // 移除 input  click 
+       
+        // 況狀三: 賦與命名空間
+        $("input").bind('click.abc' , function(){
+          alert("abc");
+        });
+        $("input").bind('mouseover.abc' , function(){
+          alert("def");
+        });
+        $("input").bind('click.xyz' , function(){
+          alert("xyz");
+        });
+
+        // $("input").trigger('click');
+        $("input").trigger('click.abc');//只觸發 abc 的 click  
+
+        // 況狀四: 移除命名空間
+        $("input").unbind('click.abc'); // 移除 input abc 的 click 只留下 xyz
+        $("input").unbind('.abc'); // 移除 input 所有的 abc
+      });         
+    </script>   
+  </head>
+  <body>
+
+    <br>
+     <input type="button" value="按鈕" />
+    <br>
+ 
+    <div>
+      <dl>
+        <dt style="font-size: 2em;color:red;">使用說明</dt>
+      </dl>    
+    </div>  
+  </body>
+</html>
