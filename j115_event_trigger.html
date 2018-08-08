@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>   -->
+    <script src="https://code.jquery.com/jquery-migrate-1.2.1.js"></script>        
+    <style>
+     input[type=button],input[type=submit] {
+         background-color: #4CAF50;
+         border: none;
+         color: white;
+         padding: 15px 32px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 4px 2px;
+         cursor: pointer;
+     } 
+
+    </style>   
+
+    <script>
+      $(document).ready(function() {  
+        // 況狀一: alert trigger 
+        // alert($("input").click(function(){
+        //   alert("aaaa");
+        // }).trigger('click')); // 返回jquery對象 
+
+        // 況狀二: 因為 trigger 返回jquery對象 , 所以可以連綴
+        // $("input").click(function(){
+        //   alert("aaaa");
+        // }).trigger('click').css('color','red'); // 返回jquery對象 可以連綴
+       
+        // 況狀三: triggerHandler 返回return 值或 undefind
+        // alert($("input").click(function(){
+        //   alert("aaaa");
+        //   return 123;
+        // }).triggerHandler('click')); 
+
+        // 況狀四: triggerHandler 返回return 值或 undefind
+        var temp1 = $("input").click(function(){
+          alert("aaaa");
+          return 123;
+        }).triggerHandler('click');         
+        alert(temp1);
+
+      });         
+    </script>   
+  </head>
+  <body>
+
+    <br>
+     <input type="button" value="按鈕" />
+    <br>
+ 
+    <div>
+      <dl>
+        <dt style="font-size: 2em;color:red;">使用說明</dt>
+        <dd>trigger 返回jquery對象 ; triggerHandler 返回return 值或 undefind</dd>
+      </dl>    
+    </div>  
+  </body>
+</html>
