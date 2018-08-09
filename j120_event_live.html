@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-migrate-1.2.1.js"></script>        
+    <style>
+  
+     input[type=button],input[type=submit] {
+         background-color: #4CAF50;
+         border: none;
+         color: white;
+         padding: 10px ;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 4px 2px;
+         cursor: pointer;
+     } 
+
+    </style>   
+
+    <script>
+      $(document).ready(function() {  
+        // 況狀一: bind 綁定了3個事件 
+        // $(".button").bind('click' , function(){
+        //   alert("abc");
+        // });
+
+        // 況狀二: 使用 live 綁定的是 document , 非 button , 所以 只綁定了1個事件 
+        // 為了測試 live(1.7版己棄用) 綁定事件,所以Jquery版本要用舊版本 1.11 版來說明
+        $(".button").live('click' , function(){
+          alert("abc");
+        });
+
+        // 況狀三:
+        // live 停止事件委托
+        // $(".button").die('click');
+
+      });         
+    </script>   
+  </head>
+  <body>
+
+    <br>
+     <div style="width:200px;height:200px;background-color:tomato;" id="box">
+       <input type="button" class="button" value="按鈕" />
+       <input type="button" class="button" value="按鈕" />
+       <input type="button" class="button" value="按鈕" />              
+     </div>
+
+    <br>
+ 
+    <div>
+      <dl>
+        <dt style="font-size: 2em;color:red;">使用說明</dt>
+        <dd>為了測試 live(1.7版己棄用) 綁定事件,所以Jquery版本要用舊版本 1.11 版來說明</dd>
+      </dl>    
+    </div>  
+  </body>
+</html>
