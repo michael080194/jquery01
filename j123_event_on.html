@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-migrate-1.2.1.js"></script>        
+    <style>
+  
+     input[type=button],input[type=submit] {
+         background-color: #4CAF50;
+         border: none;
+         color: white;
+         padding: 10px ;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 4px 2px;
+         cursor: pointer;
+     } 
+
+    </style>   
+
+    <script>
+      $(document).ready(function() {  
+        // 況狀一:
+        // 阻止冒泡及默認行為
+        // $("form").on('submit',function(){
+        //     return false ; // 阻止冒泡及默認行為
+        // });
+        // $("form").on('submit',false); // 同上功能的簡寫
+
+        // 況狀二: off 取消綁定
+        // $("#box2 .button").on('click' , function(){
+        //      alert("替代 bind");
+        // });
+        // $("#box2 .button").off('click'); // 取消綁定
+
+        // 況狀三: 事件委託(取代 live delegate)
+        // $('#box2').on('click' ,'.button', function(){
+        //   $(this).clone().appendTo('#box2');
+        // });
+        // $('#box2').off('click' ,'.button');  // 移出事件委託
+
+        // 況狀四:事件委託(只執行一次)
+        // $('#box2 .button').one('click' ,function(){
+        //   alert("事件委託(只執行一次)");
+        // });
+
+        // 況狀五:事件委託(只執行一次)
+        $('#box2').one('click' ,'.button', function(){
+          $(this).clone().appendTo('#box2');
+        });
+
+      });         
+    </script>   
+  </head>
+  <body>
+
+    <br>
+    <form action="123.html">
+     <div  id="box1" style="width: 200px;height: 200px;background: tomato;">
+         <input type="submit" class="button" value="按鈕" />
+     </div>
+    </form>
+
+    <br>
+    <div  id="box2" style="width: 200px;height: 200px;background: tomato;">
+         <input type="submit" class="button" value="按鈕" />
+    </div>
+    <br>
+ 
+    <div>
+      <dl>
+        <dt style="font-size: 2em;color:red;">使用說明</dt>
+      </dl>    
+    </div>  
+  </body>
+</html>
