@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-migrate-1.2.1.js"></script>        
+    <style>
+  
+     input[type=button],input[type=submit] {
+         background-color: #4CAF50;
+         border: none;
+         color: white;
+         padding: 10px ;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 4px 2px;
+         cursor: pointer;
+     } 
+
+    </style>   
+
+    <script>
+      $(document).ready(function() {  
+        // 況狀一:
+        // bind 無法動態綁定事件 
+        // $(".button").bind('click' , function(){
+        //   $(this).clone().appendTo('#box');
+        // });
+
+        // 況狀二:
+        // live 可以動態綁定事件, 因為是綁定在 document上
+        // 當點擊 button 時,會冒泡到 document上
+        // 此時的 document
+        // 會驗証 e.type是否為 click 且 e.target 是否為 button ; 若是才會執行
+        // $(".button").live('click' , function(){
+        //   $(this).clone().appendTo('#box');
+        // });
+
+        // 況狀三:
+        // live 停止事件委托
+        // $(".button").die('click');
+
+        // 況狀四:
+        // 為了改善 live 缺點 ； 改用 delegate
+        $("#box").delegate('.button' , 'click' , function(){
+          $(this).clone().appendTo('#box');
+        });
+
+        // 況狀五:
+        // $("#box").undelegate('.button','click'); // 取消 delegate
+      });         
+    </script>   
+  </head>
+  <body>
+
+    <br>
+     <div style="width:200px;height:200px;background-color:tomato;" id="box">
+       <input type="button" class="button" value="按鈕" />            
+     </div>
+
+    <br>
+ 
+    <div>
+      <dl>
+        <dt style="font-size: 2em;color:red;">使用說明</dt>
+        <dd>為了測試 live(1.7版己棄用) 事件委托,所以Jquery版本要用舊版本 1.11 版來說明</dd>
+        <dd>live 只綁定了1個事件 document</dd>
+        <dd>live 不支援 連綴調用；且冒泡層次太多(button->div->body->document)</dd>
+        <dd>bind delegate (3.0版己棄用)</dd>
+        <dd>bind 是事件綁定(不支援動態事件綁定) ; live delegate 為事件委托</dd>
+      </dl>    
+    </div>  
+  </body>
+</html>
