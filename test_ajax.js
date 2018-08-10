@@ -1,0 +1,1 @@
+alert("我是被載入的 JavaScript ; 並加以執行");
