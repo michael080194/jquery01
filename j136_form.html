@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>     -->
+    <!-- <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>   -->
+    <script src="https://code.jquery.com/jquery-migrate-1.2.1.js"></script>        
+    <style>
+     input[type=button],input[type=submit] {
+         background-color: #4CAF50;
+         border: none;
+         color: white;
+         padding: 15px 32px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 4px 2px;
+         cursor: pointer;
+     } 
+
+    </style>   
+
+    <script>
+      $(document).ready(function() {  
+        // 況狀一:$.ajax POST 提交表單
+        // $("form input[type=button]").click(function(){
+        //   $.ajax({
+        //     type:"POST",
+        //     url:"test_ajax3_user.php",
+        //     data:{
+        //      user:$("form input[name=user]").val(),
+        //      email:$("form input[name=email]").val(),             
+        //     },
+        //     success:function(response , status , xhr){
+        //        $("#box").html(response);
+        //     }
+        //   });
+        // });   
+
+        // 況狀二:$.ajax POST 提交表單 序列化
+        $("form input[type=button]").click(function(){
+          alert($("form").serialize());
+          $.ajax({
+            type:"POST",
+            url:"test_ajax3_user.php",
+            data:$("form").serialize(),
+            success:function(response , status , xhr){
+               $("#box").html(response);
+            }
+          });
+        });  
+
+        // 況狀三:產生成 json 格式 
+        // $("form input[name=sex]").click(function(){
+        //   alert($(this).serialize()); // 有編碼
+        //   alert(decodeURIComponent($(this).serialize())); // 解碼      
+        //   console.log($(this).serializeArray()); // 產生成 json 格式 
+        //   console.log($(this).serializeArray()[0].name); // 產生成 json 格式 
+        //   console.log($(this).serializeArray()[0].value); // 產生成 json 格式                                  
+        // });  
+
+      });         
+    </script>   
+  </head>
+  <body>
+
+    <form>
+      使用者：<input type="text" name="user">
+      e-mail:<input type="text" name="email">  
+      <input type="radio" name="sex" value="男">男
+      <input type="radio" name="sex" value="女">女      
+      <input type="button"  value ="提交" id="txt3">      
+    </form>
+    <div id="box"></div>
+
+    <div>
+      <dl>
+        <dt style="font-size: 2em;color:red;">使用說明</dt>
+      </dl>    
+    </div>  
+  </body>
+</html>
