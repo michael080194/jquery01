@@ -9,10 +9,17 @@
 5. http://www.w3school.com.cn/jquery/jquery_reference.asp 簡體版 教程
 
 # 學習 Jquery 的先前準備事項
-1. HTML5
+1. HTML5 
+   - (1) https://www.w3schools.com/html/default.asp 英文版 文檔
+   - (2) http://www.w3school.com.cn/html5/index.asp 簡體版 文檔
 2. CSS
+   - (1) https://www.w3schools.com/css/default.asp  英文版 文檔
+   - (2) http://www.w3school.com.cn/css/index.asp   簡體版 文檔
 3. JavaScript 
-
+   - (1) https://www.w3schools.com/js/default.asp  英文版 文檔
+   - (2) http://www.w3school.com.cn/b.asp          簡體版 文檔
+   - (3) https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000 作者
+:廖雪峰
 # 學習 Jquery 的步驟
   1. 先了解HTML基本架構及CSS用法(因為Jquery最主要的部份,是用來控制這二部份)
   2. Jquery選擇器使用方式
