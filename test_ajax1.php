@@ -1,6 +1,6 @@
 <?php
   $title = "";
-  if($_GET['title']){
+  if(isset($_GET['title'])){
     $title = $_GET['title'];
   }
 
