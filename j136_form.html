@@ -41,20 +41,43 @@
         //   });
         // });   
 
-        // 況狀二:$.ajax POST 提交表單 序列化
+        // 況狀二:$.ajax POST 提交表單時 data 以物件型式傳遞時;若物件太複雜;
+        // 會造成系統解析錯誤;所以data在傳遞時,可先解成字串型式來傳遞
         $("form input[type=button]").click(function(){
-          alert($("form").serialize());
+          alert($.param({
+             user:$("form input[name=user]").val(),
+             email:$("form input[name=email]").val(),   
+             sex:$("form input[name=sex]").val()                          
+            }));
+
           $.ajax({
             type:"POST",
             url:"test_ajax3_user.php",
-            data:$("form").serialize(),
+            data:$.param({
+             user:$("form input[name=user]").val(),
+             email:$("form input[name=email]").val(),       
+             sex:$("form input[name=sex]").val()                          
+            }),
             success:function(response , status , xhr){
                $("#box").html(response);
             }
           });
-        });  
+        });   
 
-        // 況狀三:產生成 json 格式 
+        // 況狀三:$.ajax POST 提交表單 序列化
+        // $("form input[type=button]").click(function(){
+        //   alert($("form").serialize());
+        //   $.ajax({
+        //     type:"POST",
+        //     url:"test_ajax3_user.php",
+        //     data:$("form").serialize(),
+        //     success:function(response , status , xhr){
+        //        $("#box").html(response);
+        //     }
+        //   });
+        // });  
+
+        // 況狀四:產生成 json 格式 
         // $("form input[name=sex]").click(function(){
         //   alert($(this).serialize()); // 有編碼
         //   alert(decodeURIComponent($(this).serialize())); // 解碼      
