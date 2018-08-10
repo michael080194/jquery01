@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>    
+    <!-- <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>   -->
+    <script src="https://code.jquery.com/jquery-migrate-1.2.1.js"></script>        
+    <style>
+     .loading {
+       display:none;
+       color:red;
+       font-weight: bold
+     }
+     input[type=button],input[type=submit] {
+         background-color: #4CAF50;
+         border: none;
+         color: white;
+         padding: 15px 32px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 4px 2px;
+         cursor: pointer;
+     } 
+    </style>   
+
+    <script>
+      $(document).ready(function() {   
+        // 況狀一: ajax error 控制
+        // $("form input[type=button]").click(function(){         
+        //   $.ajax({
+        //     type:"POST",
+        //     url:"test_ajax3_user.php",
+        //     data:$("form").serialize(),
+        //     success:function(response , status , xhr){
+        //        $("#box").html(response);
+        //     },
+        //     error:function(xhr,error,errorStatus){
+        //        console.log(xhr);
+        //        alert(xhr.status + ":" + xhr.statusText);
+        //        alert(error + ":" + errorStatus);
+        //     }
+        //   });
+        // });  
+
+        // $(document).ajaxStart(function(){
+        //   $(".loading").show();
+        // }).ajaxStop(function(){
+        //   $(".loading").hide();         
+        // });  
+
+        // 況狀二: .post error 控制 (Jquery 3.0 不能用 error)
+        // $("form input[type=button]").click(function(){         
+        //   $.post("test_ajax3_user1.php").error(function(xhr,error,errorStatus){
+        //        console.log(xhr);
+        //        alert(xhr.status + ":" + xhr.statusText);
+        //        alert(error + ":" + errorStatus);
+        //   });
+        // });  
+
+        // 況狀三: ajaxError 
+        $("form input[type=button]").click(function(){         
+          $.post("test_ajax3_user1.php");
+        });  
+        $(document).ajaxError(function(event,xhr,setting,info){
+          for(i in event){
+             // document.write(i + "<br>");
+          }
+          // console.log(xhr);
+          // alert(xhr.status + ":" + xhr.statusText);
+          // alert("setting:" + setting);
+          console.log(setting);    
+          for(i in setting){
+             // document.write(i + "<br>");
+             console.log(i);
+          }                
+          // alert("info:" + info);          
+        });  
+     });     
+    </script>   
+  </head>
+  <body>
+
+    <form>
+      使用者：<input type="text" name="user">
+      e-mail:<input type="text" name="email">  
+      <input type="radio" name="sex" value="男">男
+      <input type="radio" name="sex" value="女">女      
+      <input type="button"  value ="提交" id="txt3">      
+    </form>
+    <span class="loading">正在加載中......</span>
+    <div id="box"></div>
+
+    <div>
+      <dl>
+        <dt style="font-size: 2em;color:red;">使用說明</dt>
+      </dl>    
+    </div>  
+  </body>
+</html>
