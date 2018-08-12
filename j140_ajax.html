@@ -39,6 +39,7 @@
         //     success:function(response , status , xhr){
         //        $("#box").html(response);
         //     },
+        //     // timeout:500,
         //     error:function(xhr,error,errorStatus){
         //        console.log(xhr);
         //        alert(xhr.status + ":" + xhr.statusText);
@@ -63,24 +64,91 @@
         // });  
 
         // 況狀三: ajaxError 
+        // $("form input[type=button]").click(function(){         
+        //   $.post("test_ajax3_user1.php");
+        // });  
+        // $(document).ajaxError(function(event,xhr,setting,info){
+        //   for(i in event){
+        //      // document.write(i + "<br>");
+        //   }
+        //   // console.log(xhr);
+        //   // alert(xhr.status + ":" + xhr.statusText);
+        //   // alert("setting:" + setting);
+        //   console.log(setting);    
+        //   for(i in setting){
+        //      // document.write(i + "<br>");
+        //      console.log(i);
+        //   }                
+        //   // alert("info:" + info);          
+        // });  
+
+        // 況狀四: 正常使用 .post
+        // $("form input[type=button]").click(function(){         
+        //   $.post("test_ajax3_user.php" , $("form").serialize() , function(response , status , xhr){
+        //     $("#box").html(response);
+        //   });
+        // });      
+
+        // 況狀五: 將 況狀四 改寫成下列方式
+        // $("form input[type=button]").click(function(){         
+        //   $.post("test_ajax3_user.php" , $("form").serialize());
+        // });   
+        // $(document)
+        // .ajaxSend(function(){
+        //  alert("ajax 發送請求前執行");
+        // })
+        // .ajaxComplete(function(){
+        //  alert("ajax 發送請求完成後,不管成功或失敗");
+        // })
+        // .ajaxSuccess(function(event , response , xhr){
+        //   alert("ajax 發送請求成功:" + response.responseText);
+        //   // for(i in event){
+        //   //    document.write(i + "<br>");
+        //   // }               
+        //   $("#box").html(response.responseText);
+        // })
+        // .ajaxError(function(event,xhr,setting,info){
+        //  alert("ajax 發送請求失敗:"+info);
+        // });        
+        
+        // 況狀六: 將 況狀五 改寫成下列方式 .post
+        // $("form input[type=button]").click(function(){         
+        //   $.post("test_ajax3_user1.php" , $("form").serialize())
+        //   .success(function(response , status , xhr){
+        //     alert(status);
+        //     alert("ajax 發送請求成功:" + response);
+        //     $("#box").html(response);
+        //   })
+        //   .complete(function(){
+        //     alert("ajax 發送請求完成後,不管成功或失敗");
+        //   })
+        //   .error(function(xhr,error,errorStatus){
+        //     alert("ajax 發送請求失敗:"+errorStatus);
+        //   })
+        // });  
+
+        // 況狀七: 將 況狀五 改寫成下列方式 .ajax
         $("form input[type=button]").click(function(){         
-          $.post("test_ajax3_user1.php");
+          $.ajax({
+           type:"POST",
+           url:"test_ajax3_user.php",
+           data:$("form").serialize(),
+           success:function(response , status , xhr){
+            alert("ajax 發送請求成功:" + response);
+            $("#box").html(response);
+           },
+           complete: function(){
+            alert("ajax 發送請求完成後,不管成功或失敗");
+           },
+           error: function(xhr,error,errorStatus){
+            alert("ajax 發送請求失敗:"+errorStatus);
+           }
+          });             
         });  
-        $(document).ajaxError(function(event,xhr,setting,info){
-          for(i in event){
-             // document.write(i + "<br>");
-          }
-          // console.log(xhr);
-          // alert(xhr.status + ":" + xhr.statusText);
-          // alert("setting:" + setting);
-          console.log(setting);    
-          for(i in setting){
-             // document.write(i + "<br>");
-             console.log(i);
-          }                
-          // alert("info:" + info);          
-        });  
+
      });     
+
+     
     </script>   
   </head>
   <body>
@@ -93,6 +161,7 @@
       <input type="button"  value ="提交" id="txt3">      
     </form>
     <span class="loading">正在加載中......</span>
+    <img  class="loading" src="test_ajax_loader.gif" alt="">
     <div id="box"></div>
 
     <div>
