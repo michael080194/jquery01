@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>   -->
+    <script src="https://code.jquery.com/jquery-migrate-1.2.1.js"></script>        
+    <style>
+     .loading {
+       display:none;
+       color:red;
+       font-weight: bold
+     }     
+     input[type=button],input[type=submit] {
+         background-color: #4CAF50;
+         border: none;
+         color: white;
+         padding: 15px 32px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 4px 2px;
+         cursor: pointer;
+     } 
+
+    </style>   
+
+    <script>
+      $(document).ready(function() {      
+         $("#bt1").click(function(e){   
+          var url1 = "https://spreadsheets.google.com/feeds/list/17WWb15-jLlcJdPScRjjThiDU5P8KfAnJD5fnJ78SoQE/od6/public/values?alt=json";                       
+          var str = "";
+          $.ajax({
+            type: "get",
+            url: url1,
+            dataType: "jsonp",
+            success: function(data){
+              console.log(data);
+              var str = "";
+              var ProductName = [];
+              var Price = [];              
+              for (var i=0; i < data.feed.entry.length; i++){
+               ProductName[i] = data.feed.entry[i].gsx$productname.$t;
+               Price[i] = data.feed.entry[i].gsx$price.$t;
+               $('#producttable').append("<tr><td>" + ProductName[i] + "</td><td>" + Price[i] + "</td></tr>");
+               }                   
+              // $.each(data, function(index1, item1) {
+              //   $.each(item1, function(index2, item2) {
+
+              //   });
+              // });
+            },
+            error: function (jqXHR, exception) {
+               $(".loading").hide();     
+               alert("連線錯誤：" + jqXHR);
+            },
+            beforeSend:function(){
+                  $(".loading").show();
+                },
+            complete:function(){
+                $(".loading").hide();     
+              }
+          });                  
+         }); 
+
+         $("#bt2").click(function(e){ 
+          var ProductName = [];
+          var Price = [];
+          var url1 = "https://spreadsheets.google.com/feeds/list/17WWb15-jLlcJdPScRjjThiDU5P8KfAnJD5fnJ78SoQE/od6/public/values?alt=json";    
+
+          $.getJSON(url1, function (data){
+           for (var i=0; i < data.feed.entry.length; i++){
+            ProductName[i] = data.feed.entry[i].gsx$productname.$t;
+            Price[i] = data.feed.entry[i].gsx$price.$t;
+            $('#producttable').append("<tr><td>" + ProductName[i] + "</td><td>" + Price[i] + "</td></tr>");
+            }            
+          });                    
+         });                     
+      });         
+    </script>   
+  </head>
+  <body>
+    <div>
+     <span class="loading">正在加載中......</span>
+     <img  class="loading" src="test_ajax_loader.gif" alt="">
+    </div>
+    <table>
+        <tr>
+        <th>產品名稱</th>
+        <th>價錢</th>
+        </tr>
+        <tbody id="producttable">
+        </tbody>
+    </table>
+    <input type="button" value="開始抓取(ajax)"    id="bt1">
+    <input type="button" value="開始抓取(getJSON)" id="bt2">    
+    <br>
+
+ 
+    <div>
+      <dl>
+        <dt style="font-size: 2em;color:red;">使用說明</dt>
+        <dd>先至 google 雲端硬碟 新增一個 試算表</dd>  
+        <dd>接著在功能表 檔案 --> 共用 --> 開啟連結共用設定, 將檔案分享</dd>   
+        <dd><a href="https://forum.gamer.com.tw/Co.php?bsn=60292&sn=7871" target="_blank">參考文章</a></dd>  
+      </dl>    
+    </div>  
+  </body>
+</html>
