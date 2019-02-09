@@ -31,17 +31,18 @@
     <script>
       $(document).ready(function() {      
        $("#bt1").click(function(e){   
-          var url1 = "https://spreadsheets.google.com/feeds/list/11bu19qy39prfZDEum8NpeNt76-1yQu3ZUioKcVodvUQ/od6/public/values?alt=json";                      
+          var url1 = "https://spreadsheets.google.com/feeds/list/1QPZzOLCkv191Cl73-3P3g6eUw1H27MFvwic8HmHNvMo/od6/public/values?alt=json";                      
           var outputArray = new Array();
           $.ajax({
             type: "get",
             url: url1,
             dataType: "jsonp",
             success: function(data){     
+              console.log(data); 
               for (var i=0; i < data.feed.entry.length; i++){
                 var tempArray = new Array(); 
-                tempArray[0] = data.feed.entry[i].gsx$sn.$t;
-                tempArray[1] = data.feed.entry[i].gsx$title.$t;
+                tempArray[0] = data.feed.entry[i].gsx$id.$t;
+                tempArray[1] = data.feed.entry[i].gsx$name.$t;
                 outputArray.push(tempArray);
                }                   
             },
@@ -67,8 +68,8 @@
 
     <table>
         <tr>
-        <th>sn</th>
-        <th>title</th>
+        <th>ID</th>
+        <th>NAME</th>
         </tr>
         <tbody id="producttable">
         </tbody>

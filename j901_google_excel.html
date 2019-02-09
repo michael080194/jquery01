@@ -31,7 +31,7 @@
     <script>
       $(document).ready(function() {      
          $("#bt1").click(function(e){   
-          var url1 = "https://spreadsheets.google.com/feeds/list/17WWb15-jLlcJdPScRjjThiDU5P8KfAnJD5fnJ78SoQE/od6/public/values?alt=json";                       
+          var url1 = "https://spreadsheets.google.com/feeds/list/1QPZzOLCkv191Cl73-3P3g6eUw1H27MFvwic8HmHNvMo/od6/public/values?alt=json";                       
           var str = "";
           $.ajax({
             type: "get",
@@ -40,17 +40,19 @@
             success: function(data){
               console.log(data);
               var str = "";
-              var ProductName = [];
-              var Price = [];              
+              var id = [];
+              var name = [];              
               for (var i=0; i < data.feed.entry.length; i++){
-               ProductName[i] = data.feed.entry[i].gsx$productname.$t;
-               Price[i] = data.feed.entry[i].gsx$price.$t;
-               $('#producttable').append("<tr><td>" + ProductName[i] + "</td><td>" + Price[i] + "</td></tr>");
+               id[i] = data.feed.entry[i].gsx$id.$t;
+               name[i] = data.feed.entry[i].gsx$name.$t;
+               $('#producttable').append("<tr><td>" + id[i] + "</td><td>" + name[i] + "</td></tr>");
                }                   
               // $.each(data, function(index1, item1) {
-              //   $.each(item1, function(index2, item2) {
-
-              //   });
+                // console.log(item1);
+                // var aa = item1.entry;
+                // $.each(aa, function(index2, item2) {
+                //   console.log(item2);
+                // });
               // });
             },
             error: function (jqXHR, exception) {
@@ -67,15 +69,16 @@
          }); 
 
          $("#bt2").click(function(e){ 
-          var ProductName = [];
-          var Price = [];
-          var url1 = "https://spreadsheets.google.com/feeds/list/17WWb15-jLlcJdPScRjjThiDU5P8KfAnJD5fnJ78SoQE/od6/public/values?alt=json";    
+          var id = [];
+          var name = [];
+          var url1 = "https://spreadsheets.google.com/feeds/list/1QPZzOLCkv191Cl73-3P3g6eUw1H27MFvwic8HmHNvMo/od6/public/values?alt=json";    
 
           $.getJSON(url1, function (data){
+            console.log(data); 
            for (var i=0; i < data.feed.entry.length; i++){
-            ProductName[i] = data.feed.entry[i].gsx$productname.$t;
-            Price[i] = data.feed.entry[i].gsx$price.$t;
-            $('#producttable').append("<tr><td>" + ProductName[i] + "</td><td>" + Price[i] + "</td></tr>");
+            id[i] = data.feed.entry[i].gsx$id.$t;
+            name[i] = data.feed.entry[i].gsx$name.$t;
+            $('#producttable').append("<tr><td>" + id[i] + "</td><td>" + name[i] + "</td></tr>");
             }            
           });                    
          });                     
@@ -89,8 +92,8 @@
     </div>
     <table>
         <tr>
-        <th>產品名稱</th>
-        <th>價錢</th>
+        <th>ID</th>
+        <th>NAME</th>
         </tr>
         <tbody id="producttable">
         </tbody>
@@ -103,7 +106,7 @@
     <div>
       <dl>
         <dt style="font-size: 2em;color:red;">使用說明</dt>
-        <dd>先至 google 雲端硬碟 新增一個 試算表</dd>  
+        <dd>先至 google 雲端硬碟 新增一個 試算表(in michael??????@gmail.com crud_test)</dd>  
         <dd>接著在功能表 檔案 --> 共用 --> 開啟連結共用設定, 將檔案分享</dd>   
         <dd><a href="https://forum.gamer.com.tw/Co.php?bsn=60292&sn=7871" target="_blank">參考文章</a></dd>  
       </dl>    
