@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>     -->
+    <!-- <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>   -->
+    <script src="https://code.jquery.com/jquery-migrate-1.2.1.js"></script>        
+    <style>
+     input[type=button],input[type=submit] {
+         background-color: #4CAF50;
+         border: none;
+         color: white;
+         padding: 15px 32px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 4px 2px;
+         cursor: pointer;
+     } 
+
+    </style>   
+
+    <script>
+      var humidity = 0;
+      var temperature = 0;
+      $(document).ready(function() {  
+        $("#txt1").click(function(){
+            $.ajax({
+              type: "GET",
+              url: "https://api.mediatek.com/mcs/v2/devices/DpMteZ0e/datachannels/Humidity/datapoints",
+              headers: { deviceKey: "lRFjcZfLFeKccF1L" },
+              contentType: "application/json"
+            })
+            .done(function(data){
+              // alert(data.dataChannels) 
+              // console.log(data)
+              // console.log(data.dataChannels.dataPoints)
+              $.each(data.dataChannels, function(i, obj1) {  
+                 // console.log(obj1); 
+                 $.each(obj1, function(i2, obj2) {                   
+                   // console.log(obj2); 
+                   if(obj2 == "Humidity"){
+              
+                   } else{
+                     $.each(obj2, function(i3, obj3) {                   
+                       // console.log(obj3); 
+                       $.each(obj3, function(i4, obj4) {
+                        if(obj4 == undefined){
+
+                        } else {
+                         humidity = obj4.value; 
+                         // alert(obj4.value)
+                        }  
+                       
+                       });                       
+                     });
+                   }                        
+                 });     
+
+              });    
+              // alert("濕度:"+ humidity)   
+              $("#box1").html("<h1>濕度:"+ humidity+"</h1>");                           
+            })
+             // alert("Humidity:"+ humidity)
+             $.ajax({
+              type: "GET",
+              url: "https://api.mediatek.com/mcs/v2/devices/DpMteZ0e/datachannels/Temp/datapoints",
+              headers: { deviceKey: "lRFjcZfLFeKccF1L" },
+              contentType: "application/json"
+            })
+            .done(function(data){
+              // alert(data.dataChannels) 
+              // console.log(data)
+              // console.log(data.dataChannels.dataPoints)
+              $.each(data.dataChannels, function(i, obj1) {  
+                 console.log(obj1); 
+                 $.each(obj1, function(i2, obj2) {                   
+                   // console.log(obj2); 
+                   if(obj2 == "Temp"){
+              
+                   } else{
+                     $.each(obj2, function(i3, obj3) {                   
+                       // console.log(obj3); 
+                       $.each(obj3, function(i4, obj4) {
+                        if(obj4 == undefined){
+
+                        } else {
+                         temperature = obj4.value; 
+                         // alert(obj4.value)
+                        }  
+                       
+                       });                       
+                     });
+                   }                        
+                 });     
+
+              });    
+              // alert("温度:"+ temperature)    
+              $("#box2").html("<h1>温度:"+ temperature+"</h1>");      
+            })             
+        });       
+      });         
+    </script>   
+  </head>
+  <body>
+
+    <br>
+    <input type="button" value="抓取温濕度" id="txt1"> 
+    <div id="box2"> </div>
+    <div id="box1"> </div>    
+    <br>
+ 
+
+  </body>
+</html>
