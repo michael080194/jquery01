@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>   -->
+    <script src="https://code.jquery.com/jquery-migrate-1.2.1.js"></script>  
+    <!-- below for firebase    -->
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>      
+    <style>
+     input[type=button],input[type=submit] {
+         background-color: #4CAF50;
+         border: none;
+         color: white;
+         padding: 15px 32px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 4px 2px;
+         cursor: pointer;
+         width: 120px;
+     } 
+     
+     thead {color:green;}
+     tbody {color:blue;}
+
+     table, th, td {
+       border: 1px solid black;
+     }     
+    </style>    
+<script>
+  
+  var config = {
+    apiKey: "AIzaSyDS_C3TZgxS-blH2Q1QjnGdTX41198yw1U",
+    authDomain: "repair-b974d.firebaseapp.com",
+    databaseURL: "https://repair-b974d.firebaseio.com",
+    projectId: "repair-b974d",
+    storageBucket: "repair-b974d.appspot.com",
+    messagingSenderId: "626157948636"
+  };
+
+  firebase.initializeApp(config);
+  var database = firebase.database();
+  
+function readData(){
+  $("#tableData").html();
+    var ref = database.ref('rooms');
+    var str1 = "";
+    ref.on('value', function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+          var roomsNo = childSnapshot.key;
+          var childData = childSnapshot.val();
+
+          str1 += "<tr>";
+          str1 += "<td>" + roomsNo + "</td>"   
+          str1 += "<td>" + childData.temperature + "</td>"   
+          str1 += "<td>" + childData.humility + "</td>"                   
+          str1 += "/<tr>"; 
+      
+          for (var key in childData) {
+              var obj = childData[key];
+              // console.log(key + ":" + obj); 
+          }    
+        });
+        $('#tableData').html(str1);  
+
+    });
+}
+
+function importData(){
+  var json = {
+      "rooms" : {
+        "a1" : {
+          "temperature" : 5,
+          "humility" : 55     
+        },
+        "a2" : {
+          "temperature" : 6,
+          "humility" : 66      
+        },
+        "a3" : {
+          "temperature" : 7,
+          "humility" : 77      
+        }
+      }
+    }
+    database.ref("/").set(json)
+    .then(function () {
+        alert("importData 成功");
+    }).catch(function () {
+        alert("伺服器發生錯誤，請稍後再試");
+    })    
+}
+
+function insertData(){
+  var  roomsNo = $("input[name='roomsNo']").val(); 
+  if(roomsNo == "") {
+     alert("Please input rooms No ....")
+     return false ; 
+  }
+  var  temperature = $("input[name='temperature']").val();   
+  var  humility = $("input[name='humility']").val(); 
+  var json = {
+   temperature: temperature,
+   humility: humility
+  }      
+
+  database.ref("/rooms/" + roomsNo).set(json)
+    .then(function () {
+        alert("insertData 成功");
+    }).catch(function () {
+        alert("伺服器發生錯誤，請稍後再試");
+    })    
+}
+
+function pushData(){
+  var  temperature = $("input[name='temperature']").val();   
+  var  humility = $("input[name='humility']").val(); 
+  var json = {
+   temperature: temperature,
+   humility: humility
+  }      
+
+  database.ref("/rooms" ).push(json)
+    .then(function () {
+        alert("pushData 成功");
+    }).catch(function () {
+        alert("伺服器發生錯誤，請稍後再試");
+    })    
+}
+
+function updateData() {
+ var  roomsNo = $("input[name='roomsNo']").val(); 
+  if(roomsNo == "") {
+     alert("Please input rooms No ....")
+     return false ; 
+  }
+
+  // checkData(roomsNo).then(function onFulfilled(value){
+  //     console.log(value);
+  //     if(value != "OK") {
+  //        alert("rooms No 不存在 ....")
+  //         return false ; 
+  //     }      
+  // }).catch(function onRejected(error){
+  //     console.error(error);
+  // });
+
+  checkData(roomsNo).then(function (value) {
+     if(value != "OK") {
+        alert("rooms No 不存在 ....")
+        return false ; 
+      }          
+  }).catch(function (error) {
+     alert(error);
+  });
+
+  // let str1 = await checkData(roomsNo);
+  // alert(str1);
+  var  temperature = $("input[name='temperature']").val();   
+  var  humility = $("input[name='humility']").val(); 
+  var json = {
+   temperature: temperature
+  }      
+
+  database.ref("/rooms/" + roomsNo).update(json , function(error) {
+    if (error) {
+      // The write failed...
+    } else {
+      alert("update success");
+    }
+  });
+
+}
+
+function deleteData() {
+ var  roomsNo = $("input[name='roomsNo']").val(); 
+  if(roomsNo == "") {
+     alert("Please input rooms No ....")
+     return false ; 
+  }
+
+  var ref = database.ref('rooms/' + roomsNo);  
+
+  ref.remove()
+  .then(function() {
+    alert("Remove succeeded.")
+  })
+  .catch(function(error) {
+    alert("Remove failed: " + error.message)
+  });
+}
+
+function checkData(subRoomsNo) {
+    return new Promise(function (resolve, reject) {
+         var ref = database.ref('rooms/' + subRoomsNo);
+         ref.once('value', function(snapshot) {
+           if (snapshot.val() !== null) {
+               resolve("OK") ;
+           } else {
+               resolve("NO") ;
+           }
+         });
+    });   
+}
+
+  </script>          
+  </head>
+
+  <body>
+    <div align="center">
+      <h1>Firebase database Example For crud </h1> 
+      
+      <form >
+        rooms___No:
+        <input type="text" name="roomsNo"><br>
+        temperature:
+        <input type="text" name="temperature"><br>
+        humility____:
+        <input type="text" name="humility">        
+      </form>
+      
+      <br>
+      <br>
+      
+      <input type="button" onClick="importData()" value = "importData"></input>
+      <input type="button" onclick="insertData()" value="insertData" />  
+      <input type="button" onclick="pushData()" value="pushData" />            
+      <input type="button" onclick="readData()" value="ReadData" />
+      <input type="button" onclick="updateData()" value="UpdateData" />
+      <input type="button" onclick="deleteData()" value="deleteData" />
+
+      <br>
+      <div>
+        <dl>
+          <dt style="font-size: 2em;color:red;">使用說明</dt>
+          <dd>set：會直接蓋過 key 路徑下的所有資料;也可透過寫入空資料的方式來刪除該節點</dd>
+          <dd>update：不會直接取代 key 路徑中的所有資料，而是修改相關資料而已</dd>
+          <dd>push：一樣是新增資料，但是它不會取代任何資料、也不會更新任何資料，而且會自帶一個隨機產生(依據時間排序)的 key</dd>
+          <dd>remove：移除資料-</dd>          
+        </dl>    
+      </div>        
+      <br>
+
+      <table>
+       <thead>
+         <tr>
+           <th>Room No</th>
+           <th>Temperature</th>
+           <th>Humility</th>           
+         </tr>
+       </thead>
+       <tbody id="tableData">
+       </tbody> 
+      <table>               
+  </body>
+
+</html>
