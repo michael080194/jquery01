@@ -150,6 +150,7 @@ function updateData() {
   // });
 
   checkData(roomsNo).then(function (value) {
+     console.log(value);
      if(value != "OK") {
         alert("rooms No 不存在 ....")
         return false ; 
@@ -157,13 +158,16 @@ function updateData() {
   }).catch(function (error) {
      alert(error);
   });
+  // var xx1 = checkData(roomsNo);
+  // console.log(xx1);
 
   // let str1 = await checkData(roomsNo);
   // alert(str1);
   var  temperature = $("input[name='temperature']").val();   
   var  humility = $("input[name='humility']").val(); 
   var json = {
-   temperature: temperature
+   temperature: temperature,
+   humility: humility   
   }      
 
   database.ref("/rooms/" + roomsNo).update(json , function(error) {
@@ -205,6 +209,17 @@ function checkData(subRoomsNo) {
            }
          });
     });   
+}
+
+async function checkData2(subRoomsNo){
+  var ref = database.ref('rooms/' + subRoomsNo);
+  ref.once('value', function(snapshot) {
+    if (snapshot.val() !== null) {
+        return "OK" ;
+    } else {
+      return "NO" ;
+    }
+  });       
 }
 
   </script>          
