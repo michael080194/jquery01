@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>   -->
+    <script src="https://code.jquery.com/jquery-migrate-1.2.1.js"></script>  
+    <!-- below for firebase    -->
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>      
+    <style>
+     input[type=button],input[type=submit] {
+         background-color: #4CAF50;
+         border: none;
+         color: white;
+         padding: 15px 32px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 4px 2px;
+         cursor: pointer;
+         width: 120px;
+     } 
+     
+     thead {color:green;}
+     tbody {color:blue;}
+
+     table, th, td {
+       border: 1px solid black;
+     }     
+    </style>    
+<script>
+  
+  var config = {
+    apiKey: "AIzaSyDS_C3TZgxS-blH2Q1QjnGdTX41198yw1U",
+    authDomain: "repair-b974d.firebaseapp.com",
+    databaseURL: "https://repair-b974d.firebaseio.com",
+    projectId: "repair-b974d",
+    storageBucket: "repair-b974d.appspot.com",
+    messagingSenderId: "626157948636"
+  };
+
+  firebase.initializeApp(config);
+  function uploadImage(){
+   //storage 開始
+    //……………………………………………………………………..
+    var storage = firebase.storage();
+   //做一個簡單的檔案上傳器
+    //……………………………………………………………………..
+   //檔案
+
+    var file = document.getElementById("image-file").files[0];  // file from input  
+   //設定firebase上傳細節
+   var storageRef = firebase.storage().ref("photo/"+file.name);   
+   //執行！
+    storageRef.put(file).then(function (snapshot) {
+        console.log("上傳結果:" + snapshot.state);
+        console.log("上傳檔案:" + snapshot.bytesTransferred + " byte");        
+    });    
+  }
+
+  function updateImageMeta(){
+      var storageRef = firebase.storage().ref("photo/1070205-1.jpeg");  
+      var newMetadata = {
+          cacheControl: 'public,max-age=300',
+          customMetadata: {
+            'location': 'Yosemite, CA, USA',
+            'activity': 'Hiking'
+          }      
+      }
+
+      storageRef.updateMetadata(newMetadata).then(function(metadata) {
+        console.log("更新後的照片資料：",metadata);
+      }).catch(function(error) {
+        // Uh-oh, an error occurred!
+      });
+  }
+
+  function retrieveImage(){
+      var storageRef = firebase.storage().ref("photo/1070205-1.jpeg");  
+      storageRef.getMetadata().then(function(metadata) {
+         console.log("取得照片資料",metadata);
+       }).catch(function(error) {
+         // Uh-oh, an error occurred!
+       });
+
+       storageRef.getDownloadURL().then(function(url)                             {
+         document.querySelector('img').src = url;
+       }).catch(function(error) {
+         console.error(error);
+       });       
+  }
+
+  function delImage(){
+      var storageRef = firebase.storage().ref("photo/1070208-2.jpeg");  
+      storageRef.delete().then(function() {
+        console.log("1070208-2 被刪除了");
+      }).catch(function(error) {
+        // Uh-oh, an error occurred!
+      });
+  }
+
+  </script>          
+  </head>
+
+  <body>
+    <div align="center">
+      <h1>Firebase database Example For storage </h1> 
+      
+      <form enctype="multipart/form-data" action="" method="post">
+          <input id="image-file" type="file" />
+      </form>
+      <img height="125" width="125"/>
+      <br>
+      <br>
+      
+      <input type="button" onClick="uploadImage()" value = "uploadImage"></input>
+      <input type="button" onClick="retrieveImage()" value = "retrieveImage"></input>
+      <input type="button" onClick="updateImageMeta()" value = "updateImageMeta"></input>  <input type="button" onClick="delImage()" value = "delImage"></input>    
+      <br>
+      <div>
+        <dl>
+          <dt style="font-size: 2em;color:red;">使用說明</dt>
+          <dd>儲存檔案文件至 firebase storage</dd>     
+          <dd>參考網址:http://sj82516-blog.logdown.com/posts/1064788/teaching-firebase-page-four-rest-and-storage</dd>
+        </dl>    
+      </div>        
+      <br>
+             
+  </body>
+
+</html>
