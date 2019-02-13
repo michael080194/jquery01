@@ -81,16 +81,25 @@
   function retrieveImage(){
       var storageRef = firebase.storage().ref("photo/1070205-1.jpeg");  
       storageRef.getMetadata().then(function(metadata) {
-         console.log("取得照片資料",metadata);
-       }).catch(function(error) {
-         // Uh-oh, an error occurred!
-       });
+        console.log("取得照片資料",metadata);
+      }).catch(function(error) {
+        // Uh-oh, an error occurred!
+      });
 
-       storageRef.getDownloadURL().then(function(url)                             {
-         document.querySelector('img').src = url;
-       }).catch(function(error) {
-         console.error(error);
-       });       
+      storageRef.getDownloadURL().then(function(url){
+        console.log(url);
+        document.querySelector('img').src = url;
+        $("#abc").attr("href", url);    
+        // var xx1 = $("#abc");
+        // console.log("xx1=", xx1);
+        // xx1.click();    
+        // var link=document.createElement('a');
+        // document.body.appendChild(link);
+        // link.href=url;
+        // link.click();
+      }).catch(function(error) {
+        console.error(error);
+      });       
   }
 
   function delImage(){
@@ -112,7 +121,9 @@
       <form enctype="multipart/form-data" action="" method="post">
           <input id="image-file" type="file" />
       </form>
-      <img height="125" width="125"/>
+      <a id="abc" download>
+         <img  height="125" width="125"/>
+      </a>      
       <br>
       <br>
       
