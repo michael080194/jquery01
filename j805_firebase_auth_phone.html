@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>   -->
+    <script src="https://code.jquery.com/jquery-migrate-1.2.1.js"></script>  
+    <!-- below for firebase    -->
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>    
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />      
+    <style>
+     input[type=button],input[type=submit] {
+         background-color: #4CAF50;
+         border: none;
+         color: white;
+         padding: 15px 32px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 4px 2px;
+         cursor: pointer;
+         width: 120px;
+     } 
+     
+     thead {color:green;}
+     tbody {color:blue;}
+
+     table, th, td {
+       border: 1px solid black;
+     }     
+    </style>    
+<script>
+  
+  var config = {
+    apiKey: "AIzaSyDS_C3TZgxS-blH2Q1QjnGdTX41198yw1U",
+    authDomain: "repair-b974d.firebaseapp.com",
+    databaseURL: "https://repair-b974d.firebaseio.com",
+    projectId: "repair-b974d",
+    storageBucket: "repair-b974d.appspot.com",
+    messagingSenderId: "626157948636"
+  };
+
+  firebase.initializeApp(config);
+
+  </script>          
+  </head>
+
+  <body>
+
+      <h1>Firebase database Example For authentication </h1>     
+      <div id="container">
+       <h3></h3>
+       <div id="loading"></div>
+       <div id="loaded" class="hidden">
+         <div id="main">
+           <div id="user-signed-in" class="hidden">
+             <div id="user-info">
+               <div id="photo-container">
+                 <img id="photo">
+               </div>
+               <div id="name"></div>
+               <div id="email"></div>
+               <div id="phone"></div>
+                <script>
+              </script>
+               <div class="clearfix"></div>
+             </div>
+             <p>
+               <button id="sign-out">Sign Out</button>
+               <button id="delete-account">Delete account</button>
+             </p>
+           </div>
+           <div id="user-signed-out" class="hidden">
+             <h4>You are signed out.</h4>
+             <div id="firebaseui-spa">
+ 
+               <h3></h3>
+               <div id="firebaseui-container"></div>
+             </div>
+           </div>
+         </div>
+       </div>
+      </div>
+      <br>
+      <script src="j805_auth.js"></script>     
+  </body>
+
+</html>
