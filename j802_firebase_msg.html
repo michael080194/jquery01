@@ -78,7 +78,7 @@ function sendMsg_bk(){
   xhttp.send(JSON.stringify(payload));
 }
 
-function sendMsg(){
+function sendMsgToApp(){
   var apiKey = "key=AAAAkcnsDtw:APA91bGItafVSUixBSoqn9qOKa7gNsL_EitrVc9Wq1MmewB3UE1LrlS_SOMbErhiUVs0w2zNjZwxXjF5PuTxcSckZ6-o3DUZwdguSytLI6khntz9UeWy0WQCNnW8SOCftoXaPZKO9iAU"
   
   var  title = $("input[name='title']").val();   
@@ -96,6 +96,8 @@ function sendMsg(){
     "body": message    
   }
 }  
+
+
     $.ajax({
         url: 'https://fcm.googleapis.com/fcm/send',
         type: 'post',
@@ -110,6 +112,55 @@ function sendMsg(){
         }
       });
 }      
+
+function sendMsgToChrome(){
+  var apiKey1 = "key=AAAAkcnsDtw:APA91bGItafVSUixBSoqn9qOKa7gNsL_EitrVc9Wq1MmewB3UE1LrlS_SOMbErhiUVs0w2zNjZwxXjF5PuTxcSckZ6-o3DUZwdguSytLI6khntz9UeWy0WQCNnW8SOCftoXaPZKO9iAU"
+
+  apiKey1 = "key=AIzaSyDS_C3TZgxS-blH2Q1QjnGdTX41198yw1U"
+
+  var token = "fkI0yQQIB7U:APA91bEgPAT8AdKqwZh2yfCFXj-Rb7Q1j7DV_eGpuV-J9r_3Qxx4G8zi4ZJCFOWaKRlzQOoZoZei4Mh4UAEpYPJQ8I_1QBS8pTFICn17t9EkQsOqzya2Xd8XvWN3A_449-pyBXntyL2n"
+  var  title = $("input[name='title']").val();   
+  var  message = $("input[name='message']").val(); 
+
+
+var notificationData1 =
+{
+  "message": {
+    "token" : token,
+    "notification": {
+      "title": "FCM Message",
+      "body": "This is a message from FCM"
+    },
+    "webpush": {
+      "headers": {
+        "Urgency": "high"
+      },
+      "notification": {
+        "body": "This is a message from FCM to web",
+        "requireInteraction": "true",
+        "badge": "/badge-icon.png"
+      }
+    }
+  }
+}
+
+    $.ajax({
+        url: 'https://fcm.googleapis.com/fcm/send',
+        type: 'post',        
+        data: JSON.stringify(notificationData1),
+        headers: {
+          'Access-Control-Allow-Origin':'*',
+          'Content-Type': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',       
+          'Authorization': apiKey1
+        },
+        dataType: 'json',
+        success: function (data) {
+          console.log(data);
+        }
+      });
+}      
+
   </script>          
   </head>
 
@@ -128,7 +179,9 @@ function sendMsg(){
       <br>
       <br>
       
-      <input type="button" onClick="sendMsg()" value = "send notification"></input>
+      <input type="button" onClick="sendMsgToApp()" value = "send notification to App"></input>
+
+      <input type="button" onClick="sendMsgToChrome()" value = "send notification to Chrome"></input>
 
       <br>
       <div>
