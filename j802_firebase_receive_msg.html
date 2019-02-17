@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>   -->
+    <script src="https://code.jquery.com/jquery-migrate-1.2.1.js"></script>  
+    <!-- below for firebase    -->
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>    
+    <link rel="manifest" href="manifest.json">    
+    <style>
+     input[type=button],input[type=submit] , button{
+         background-color: #4CAF50;
+         border: none;
+         color: white;
+         padding: 15px 32px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 4px 2px;
+         cursor: pointer;
+         width: 120px;
+     } 
+
+    </style>        
+  </head>
+
+  <body>
+      <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <h3>Firebase Cloud Messaging</h3>
+                <!-- div to display the generated Instance ID token -->
+        <div id="token_div" style="display: none;">
+          <h4>Instance ID Token</h4>
+          <p id="token" style="word-break: break-all;"></p>
+          <button onclick="deleteToken()">Delete Token</button>
+        </div>
+        <!-- div to display the UI to allow the request for permission to
+            notify the user. This is shown if the app has not yet been
+            granted permission to notify. -->
+        <div id="permission_div" style="display: none;">
+          <h4>Needs Permission</h4>
+          <p id="token"></p>
+          <button onclick="requestPermission()">Request Permission</button>
+        </div>
+        <!-- div to display messages received by this app. -->
+        <div id="messages"></div>
+      </div>  
+      <script src="j802_firebase_receive_msg.js"></script>         
+  </body>
+
+</html>
