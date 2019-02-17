@@ -55,12 +55,6 @@
       
     messaging.usePublicVapidKey("BKsArxACO_ucIeJcV5bNCXTigL0XYSP5QpvqV4Z_YTuFZg028n6WGfQdvH7uYLmtd_5JCHy3CVjLgXRPJFLj3Qg");
 
-    navigator.serviceWorker.register('firebase-messaging-sw.js')
-    .then((registration) => {
-      messaging.useServiceWorker(registration);
-    
-      // Request permission and get token.....
-    });
     messaging.onMessage(function(payload) {
       alert("Message received.")
       console.log(payload);
@@ -82,6 +76,12 @@
     const permissionDivId = 'permission_div';
     // step--03
     messaging.requestPermission().then(function() {
+      navigator.serviceWorker.register('firebase-messaging-sw.js')
+      .then((registration) => {
+        messaging.useServiceWorker(registration);
+      
+        // Request permission and get token.....
+      });      
       console.log('Notification permission granted.');
       if (!isTokenSentToServer()) {
           getRegisterToken();
