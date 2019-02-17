@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>   -->
+    <script src="https://code.jquery.com/jquery-migrate-1.2.1.js"></script>  
+    <!-- below for firebase    -->
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>   
+    <script src="j800_fireBase_config.js"></script>          
+    <style>
+     input[type=button],input[type=submit] {
+         background-color: #4CAF50;
+         border: none;
+         color: white;
+         padding: 15px 32px;
+         text-align: right;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 4px 2px;
+         cursor: pointer;
+         width: 200px;
+     } 
+     
+     thead {color:green;}
+     tbody {color:blue;}
+
+     table, th, td {
+       border: 1px solid black;
+     }     
+    </style>    
+<script>
+
+function sendMsg_bk(){
+  var endpoint = "https://fcm.googleapis.com/fcm/send"
+  xhttp = new XMLHttpRequest();
+  xhttp.open("POST", endpoint , true);
+  xhttp.setRequestHeader("Content-type", "application/json");
+  // xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+  // xhttp.setRequestHeader('Access-Control-Allow-Methods', 'POST');  
+  xhttp.setRequestHeader("Authorization", "key=AAAAkcnsDtw:APA91bGItafVSUixBSoqn9qOKa7gNsL_EitrVc9Wq1MmewB3UE1LrlS_SOMbErhiUVs0w2zNjZwxXjF5PuTxcSckZ6-o3DUZwdguSytLI6khntz9UeWy0WQCNnW8SOCftoXaPZKO9iAU");  
+
+  xhttp.onreadystatechange = function() {
+    if(xhttp.readyState == 4){
+      if(xhttp.status == 200){
+        var response = JSON.parse(xhttp.responseText);
+        if(response.result == 1)
+          alert( 'ERROR: ' + response.message )
+        else
+          alert( 'Push notification sent successfully!' )
+      }
+    }
+  };
+
+  var  title = $("input[name='title']").val();   
+  var  message = $("input[name='message']").val(); 
+
+  var payload = {
+    "notification": {
+      "title": title,
+      "body": message,
+      "sound": "default",
+      "click_action": "FCM_PLUGIN_ACTIVITY",
+      "icon": "fcm_push_icon"
+    },
+    "data": {
+      "param1": "value1",
+      "param2": "value2"
+    },
+    "to": "/topics/all",
+    // "token":"",    
+    "priority": "high",
+    "restricted_package_name": "com.kyc168.repair"
+  };
+
+  xhttp.send(JSON.stringify(payload));
+}
+
+function sendMsgToApp(){
+  var apiKey = "key=AAAAkcnsDtw:APA91bGItafVSUixBSoqn9qOKa7gNsL_EitrVc9Wq1MmewB3UE1LrlS_SOMbErhiUVs0w2zNjZwxXjF5PuTxcSckZ6-o3DUZwdguSytLI6khntz9UeWy0WQCNnW8SOCftoXaPZKO9iAU"
+  
+  var  title = $("input[name='title']").val();   
+  var  message = $("input[name='message']").val(); 
+
+  var notificationData = {
+  "to": "/topics/all",
+  "data": {
+    "mrp": 5000,
+    "retailPrice": 3000
+  },
+  "notification": {
+    "color": "#FF0000",
+    "title": title,
+    "body": message    
+  }
+}  
+
+
+    $.ajax({
+        url: 'https://fcm.googleapis.com/fcm/send',
+        type: 'post',
+        data: JSON.stringify(notificationData),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': apiKey
+        },
+        dataType: 'json',
+        success: function (data) {
+          console.info(data);
+        }
+      });
+}      
+
+function sendMsgToChrome_bk(){
+  var apiKey1 = "key=AAAAkcnsDtw:APA91bGItafVSUixBSoqn9qOKa7gNsL_EitrVc9Wq1MmewB3UE1LrlS_SOMbErhiUVs0w2zNjZwxXjF5PuTxcSckZ6-o3DUZwdguSytLI6khntz9UeWy0WQCNnW8SOCftoXaPZKO9iAU"
+
+  apiKey1 = "key=AIzaSyDS_C3TZgxS-blH2Q1QjnGdTX41198yw1U"
+
+  var token = "fkI0yQQIB7U:APA91bEgPAT8AdKqwZh2yfCFXj-Rb7Q1j7DV_eGpuV-J9r_3Qxx4G8zi4ZJCFOWaKRlzQOoZoZei4Mh4UAEpYPJQ8I_1QBS8pTFICn17t9EkQsOqzya2Xd8XvWN3A_449-pyBXntyL2n"
+  var  title = $("input[name='title']").val();   
+  var  message = $("input[name='message']").val(); 
+
+
+var notificationData1 =
+{
+  "message": {
+    "token" : token,
+    "notification": {
+      "title": "FCM Message",
+      "body": "This is a message from FCM"
+    },
+    "webpush": {
+      "headers": {
+        "Urgency": "high"
+      },
+      "notification": {
+        "body": "This is a message from FCM to web",
+        "requireInteraction": "true",
+        "badge": "/badge-icon.png"
+      }
+    }
+  }
+}
+
+    $.ajax({
+        url: 'https://fcm.googleapis.com/fcm/send',
+        type: 'post',        
+        data: JSON.stringify(notificationData1),
+        headers: {
+          'Access-Control-Allow-Origin':'*',
+          'Content-Type': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',       
+          'Authorization': apiKey1
+        },
+        dataType: 'json',
+        success: function (data) {
+          console.log(data);
+        }
+      });
+}      
+
+function sendMsgToChrome(){
+  readToken();
+  url1 = "http://localhost/php/jquery01/j802_firebase_send_msg.php"
+  var title = $("input[name='title']").val();   
+  var message = $("input[name='message']").val();  
+  var token = "eztdQ9VKBV8:APA91bFKiQ-7f1wK5gvZCpX8nd6CR3XK87ShZBLFdyK_TCHQQxoFSNgLkep5If3Mc3HEAznf4JjBd6gY-5z1yVhnuBUA5ZPDwYgMN-eP_qhrLz4GGpKvuaL6KD_nhygfoZRfRVkrZZwy";
+  var pass0 = {};
+  pass0.server_key = "AIzaSyDZjHWHKkaTcGW9jS-_HTGQlxsbDx4edHE";
+  pass0.token = token;  // 沒有夾帶圖檔至後台
+  pass0.title = title;  // Notification title
+  pass0.body = message; // Notification body
+  $.ajax({
+    type: "POST",
+    url: url1,
+    data: pass0,
+    success: function(smsg){ //
+       console.log(smsg);
+    },
+    error: function (jqXHR, exception) {
+      console.log(jqXHR);
+       console.log(exception);
+       alert("無法連線!!");
+    },
+    beforeSend:function(){
+        },
+    complete:function(){
+        }
+   });  
+}
+function readToken(){
+    alert("readToken");
+    var ref = firebase.database().ref('token');
+    var str1 = "";
+    ref.on('value', function(snapshot) {
+        console.log("snapshot" , snapshot);
+        snapshot.forEach(function(childSnapshot) {
+          var roomsNo = childSnapshot.key;
+          var childData = childSnapshot.val();
+          console.log(roomsNo , childData);
+        });
+    });
+}
+
+  </script>          
+  </head>
+
+  <body>
+    <div align="center">
+      <h1>Firebase database Example For notification </h1> 
+      
+      <form >
+        title:
+        <input type="text" name="title"><br>
+        message :
+        <input type="text" name="message"><br>
+      
+      </form>
+      
+      <br>
+      <br>
+      
+      <input type="button" onClick="sendMsgToApp()" value = "send notification to App"></input>
+
+      <input type="button" onClick="sendMsgToChrome()" value = "send notification to Chrome"></input>
+
+      <br>
+      <div>
+        <dl>
+          <dt style="font-size: 2em;color:red;">使用說明</dt>
+          <dd>訊息推撥</dd>      
+        </dl>    
+      </div>        
+      <br>
+
+           
+  </body>
+
+</html>
