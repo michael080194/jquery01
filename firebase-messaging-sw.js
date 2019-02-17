@@ -1,6 +1,6 @@
 
-importScripts('https://www.gstatic.com/firebasejs/4.8.1/firebase-app.js');
-importScripts('https://www.gstatic.com/firebasejs/4.8.1/firebase-messaging.js');
+importScripts('https://www.gstatic.com/firebasejs/5.8.2/firebase-app.js');
+importScripts('https://www.gstatic.com/firebasejs/5.8.2/firebase-messaging.js');
 
 var config = {
  apiKey: "AIzaSyDS_C3TZgxS-blH2Q1QjnGdTX41198yw1U",
@@ -15,3 +15,8 @@ firebase.initializeApp(config);
 // step--02
 // Retrieve Firebase Messaging object.
 const messaging = firebase.messaging();
+
+messaging.setBackgroundMessageHandler(function (payload) {
+ console.log('Received background message ', payload);
+
+});
