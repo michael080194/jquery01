@@ -163,6 +163,34 @@ var notificationData1 =
 }      
 
 function sendMsgToChrome(){
+      var key = 'AIzaSyDZjHWHKkaTcGW9jS-_HTGQlxsbDx4edHE';
+      var to = 'eztdQ9VKBV8:APA91bFKiQ-7f1wK5gvZCpX8nd6CR3XK87ShZBLFdyK_TCHQQxoFSNgLkep5If3Mc3HEAznf4JjBd6gY-5z1yVhnuBUA5ZPDwYgMN-eP_qhrLz4GGpKvuaL6KD_nhygfoZRfRVkrZZwy';
+      var notification = {
+        'title': 'Portugal vs. Denmark',
+        'body': '5 to 1',
+        'icon' : 'icons/icon36.png',
+        'image' : 'icons/icon48.png',
+        'click_action': 'http://localhost:8081'
+      };
+
+      fetch('https://fcm.googleapis.com/fcm/send', {
+        'method': 'POST',
+        'headers': {
+          'Authorization': 'key=' + key,
+          'Content-Type': 'application/json'
+        },
+        'body': JSON.stringify({
+          'data': notification,
+          'to': to
+        })
+      }).then(function(response) {
+        console.log(response);
+      }).catch(function(error) {
+        console.error(error);
+      })
+  
+}
+function sendMsgToChrome_ok(){
   readToken();
   url1 = "http://localhost/php/jquery01/j802_firebase_send_msg.php"
   var title = $("input[name='title']").val();   
