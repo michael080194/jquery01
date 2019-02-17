@@ -64,12 +64,13 @@
     const permissionDivId = 'permission_div';
     // step--03
     messaging.requestPermission().then(function() {
-      navigator.serviceWorker.register('firebase-messaging-sw.js')
-      .then((registration) => {
-        messaging.useServiceWorker(registration);
+      // navigator.serviceWorker.register('firebase-messaging-sw.js')
+      // .then((registration) => {
+      //   messaging.useServiceWorker(registration);
       
-        // Request permission and get token.....
-      });      
+      //   // Request permission and get token.....
+      // });      
+      firebase.messaging().useServiceWorker('firebase-messaging-sw.js')      
       console.log('Notification permission granted.');
       if (!isTokenSentToServer()) {
           getRegisterToken();
@@ -212,7 +213,7 @@
           messagesElement.removeChild(messagesElement.lastChild);
         }
       }  
-      
+
       messaging.onMessage(function(payload) {
         alert("Message received.")
         console.log(payload);
