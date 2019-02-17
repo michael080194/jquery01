@@ -55,18 +55,6 @@
       
     messaging.usePublicVapidKey("BKsArxACO_ucIeJcV5bNCXTigL0XYSP5QpvqV4Z_YTuFZg028n6WGfQdvH7uYLmtd_5JCHy3CVjLgXRPJFLj3Qg");
 
-    messaging.onMessage(function(payload) {
-      alert("Message received.")
-      console.log(payload);
-      var title = payload.data.title;
-      var options = {
-        body : payload.data.body , 
-        icon : payload.data.icon , 
-        image : payload.data.image                 
-      }
-      var myNotification = new Notification(title, options);
-
-    });
 
     // firebase.messaging().onMessage(notification => {
     //   alert('Notification received!', notification);
@@ -225,5 +213,17 @@
         }
       }  
       
+      messaging.onMessage(function(payload) {
+        alert("Message received.")
+        console.log(payload);
+        var title = payload.data.title;
+        var options = {
+          body : payload.data.body , 
+          icon : payload.data.icon , 
+          image : payload.data.image                 
+        }
+        var myNotification = new Notification(title, options);
+  
+      });     
      
    
