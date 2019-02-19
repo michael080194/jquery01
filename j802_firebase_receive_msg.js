@@ -54,7 +54,7 @@
 
     if('serviceWorker' in navigator) {
       console.log("serviceWorker  is supportted")
-      // firebase.messaging().useServiceWorker('firebase-messaging-sw.js')           
+      firebase.messaging().useServiceWorker('firebase-messaging-sw.js')           
    }
    
     // firebase.messaging().onMessage(notification => {
