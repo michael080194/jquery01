@@ -70,7 +70,12 @@
       console.log('Notification permission granted.');
       if('serviceWorker' in navigator) {
         console.log("serviceWorker  is supportted")
-        firebase.messaging().useServiceWorker('firebase-messaging-sw.js')           
+        navigator.serviceWorker.register("firebase-messaging-sw.js").then(function() { //Include the service worker js file
+          //Registration worked
+        }).catch(function() {
+          //Registration didn't work
+        });        
+        // firebase.messaging().useServiceWorker('firebase-messaging-sw.js')           
      }      
       if (!isTokenSentToServer()) {
           getRegisterToken();
