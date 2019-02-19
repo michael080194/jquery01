@@ -75,7 +75,7 @@
         // }).catch(function() {
         //   //Registration didn't work a
         // }); 
-        messaging.useServiceWorker('sw.js');                
+        // messaging.useServiceWorker('sw.js');                
         // firebase.messaging().useServiceWorker('firebase-messaging-sw.js')           
      }      
       if (!isTokenSentToServer()) {
