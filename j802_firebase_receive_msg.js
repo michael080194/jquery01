@@ -73,9 +73,9 @@
         // navigator.serviceWorker.register("firebase-messaging-sw.js").then(function() { //Include the service worker js file
         //   //Registration worked
         // }).catch(function() {
-        //   //Registration didn't work
+        //   //Registration didn't work a
         // }); 
-        messaging.useServiceWorker('sw.js');               
+        messaging.useServiceWorker('sw.js');                
         // firebase.messaging().useServiceWorker('firebase-messaging-sw.js')           
      }      
       if (!isTokenSentToServer()) {
