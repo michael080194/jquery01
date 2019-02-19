@@ -33,7 +33,7 @@
      }     
     </style>    
 <script>
-
+var tokenArr = [];
 function sendMsg_bk(){
   var endpoint = "https://fcm.googleapis.com/fcm/send"
   xhttp = new XMLHttpRequest();
@@ -163,12 +163,33 @@ var notificationData1 =
 }      
 
 function sendMsgToChrome(){
-      readToken();
+  //https://repair-b974d.firebaseio.com/token/.json'
+  var url1 = config.databaseURL+"/token/.json";
+  var param = {data: "token/"};
+  param = {};
+  $.ajax({
+    url: url1,
+    type: "GET",
+    data: JSON.stringify(param),
+    success: function (data) {
+      for (var token in data) {
+        sendMsgToChrome1(token)
+      }
+
+    },
+    error: function(error) {
+      alert("error: "+error);
+    }
+  });
+}
+
+function sendMsgToChrome1(subToken){
+      var  title = $("input[name='title']").val();   
+      var  message = $("input[name='message']").val();       
       var key = 'AIzaSyDZjHWHKkaTcGW9jS-_HTGQlxsbDx4edHE';
-      var to = 'diB7olyEhFM:APA91bFfSKApgxlPfr73kQxBOE_VLXHYDu1uFWuaD7YPRkcKkDXkFYjnk5Frng6PW5pcupG5XqjN0S3qvNF2nGeh_yJfCWscLITAOBJ11syOyMjdUKSQmhWMSrwmTjfMMC7ZBcUc1gx3';
       var notification = {
-        'title': 'Portugal vs. Denmark',
-        'body': '5 to 1',
+        'title': title,
+        'body': message,
         'icon' : 'icons/icon36.png',
         'image' : 'icons/icon48.png',
         'click_action': 'http://localhost:8081'
@@ -182,7 +203,8 @@ function sendMsgToChrome(){
         },
         'body': JSON.stringify({
           'data': notification,
-          'to': to
+          // "registration_ids":  array        
+          'to': subToken
         })
       }).then(function(response) {
         console.log(response);
@@ -191,7 +213,42 @@ function sendMsgToChrome(){
       })
   
 }
-function sendMsgToChrome_ok(){
+function readToken1(){
+    console.log("read data...")
+    var ref = firebase.database().ref('token');
+    var str1 = "";
+    tokenTemp =[];
+    ref.on('value', function(snapshot) {
+        // console.log("snapshot" , snapshot.val());
+        tokenTemp.push(snapshot.val().token);   
+        // console.log("tokenTemp" , snapshot.val().token);
+        // console.log("tokenArr1" , tokenArr);             
+        // snapshot.forEach(function(childSnapshot) {
+        //   var roomsNo = childSnapshot.key;
+        //   var childData = childSnapshot.val();
+        //   console.log(roomsNo , childData);
+        // });
+    });
+
+    return tokenTemp
+}
+
+function readToken2(){
+    console.log("read data 1" );  
+    return new Promise(function (resolve, reject) {
+        var ref = firebase.database().ref('token');
+        var str1 = "";
+        tokenArr =[];
+        ref.on('value', function(snapshot) {
+            tokenArr.push(snapshot.val().token);   
+            // console.log("tokenArr1" , tokenArr);             
+        });
+        console.log("read data 2" , tokenArr);  
+        resolve(tokenArr) ;
+    });   
+}
+
+function sendMsgToChromeByPhp(){
   readToken();
   url1 = "http://localhost/php/jquery01/j802_firebase_send_msg.php"
   var title = $("input[name='title']").val();   
@@ -199,7 +256,7 @@ function sendMsgToChrome_ok(){
   var token = "eztdQ9VKBV8:APA91bFKiQ-7f1wK5gvZCpX8nd6CR3XK87ShZBLFdyK_TCHQQxoFSNgLkep5If3Mc3HEAznf4JjBd6gY-5z1yVhnuBUA5ZPDwYgMN-eP_qhrLz4GGpKvuaL6KD_nhygfoZRfRVkrZZwy";
   var pass0 = {};
   pass0.server_key = "AIzaSyDZjHWHKkaTcGW9jS-_HTGQlxsbDx4edHE";
-  pass0.token = token;  // 沒有夾帶圖檔至後台
+  pass0.token = token;  
   pass0.title = title;  // Notification title
   pass0.body = message; // Notification body
   $.ajax({
@@ -220,19 +277,6 @@ function sendMsgToChrome_ok(){
         }
    });  
 }
-function readToken(){
-    alert("readToken");
-    var ref = firebase.database().ref('token');
-    var str1 = "";
-    ref.on('value', function(snapshot) {
-        console.log("snapshot" , snapshot);
-        snapshot.forEach(function(childSnapshot) {
-          var roomsNo = childSnapshot.key;
-          var childData = childSnapshot.val();
-          console.log(roomsNo , childData);
-        });
-    });
-}
 
   </script>          
   </head>
@@ -243,9 +287,9 @@ function readToken(){
       
       <form >
         title:
-        <input type="text" name="title"><br>
+        <input type="text" name="title" value="message title"><br>
         message :
-        <input type="text" name="message"><br>
+        <input type="text" name="message" value="message body"><br>
       
       </form>
       
