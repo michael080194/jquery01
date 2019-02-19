@@ -52,10 +52,6 @@
       
     messaging.usePublicVapidKey("BKsArxACO_ucIeJcV5bNCXTigL0XYSP5QpvqV4Z_YTuFZg028n6WGfQdvH7uYLmtd_5JCHy3CVjLgXRPJFLj3Qg");
 
-    if('serviceWorker' in navigator) {
-      console.log("serviceWorker  is supportted")
-      firebase.messaging().useServiceWorker('firebase-messaging-sw.js')           
-   }
    
     // firebase.messaging().onMessage(notification => {
     //   alert('Notification received!', notification);
@@ -72,6 +68,10 @@
       //   // Request permission and get token.....
       // });        
       console.log('Notification permission granted.');
+      if('serviceWorker' in navigator) {
+        console.log("serviceWorker  is supportted")
+        firebase.messaging().useServiceWorker('firebase-messaging-sw.js')           
+     }      
       if (!isTokenSentToServer()) {
           getRegisterToken();
       } else {
