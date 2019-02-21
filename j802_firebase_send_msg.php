@@ -18,8 +18,8 @@ $msg = [
     'title'        => $title,
     'body'         => $body,
     'icon'         => 'icons/icon36.png',
-    'image'        => 'icons/icon48.png',
-    'click_action' => 'https://michael080194.github.io/jquery01/',
+    'image'        => 'icons/notification.png',
+    'click_action' => 'https://repair-b974d.firebaseapp.com',
 ];
 
 $payload = [
