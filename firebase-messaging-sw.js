@@ -17,6 +17,29 @@ firebase.initializeApp(config);
 const messaging = firebase.messaging();
 
 messaging.setBackgroundMessageHandler(function (payload) {
- console.log('Received background message ', payload);
-
+ var title = payload.data.title;
+ var options = {
+   body : payload.data.body , 
+   icon : payload.data.icon , 
+   image : payload.data.image,
+   data : {
+      time : new Date(Date.now()).toString(),
+      click_action : payload.data.click_action
+   }                        
+ };
+ return self.registration.showNotification(title, options);
 });
+
+self.addEventListener('notificationclick', function(event) {
+ var action_click = event.notification.data.click_action;
+ event.notification.close();
+
+ event.waitUntil(
+  clients.openWindow(action_click)
+  );
+
+});      
+
+self.addEventListener('notificationclose', function(event) {
+  alert("notification close");
+});      
