@@ -241,10 +241,12 @@
         var options = {
           body : payload.data.body , 
           icon : payload.data.icon , 
-          image : payload.data.image                 
+          image : payload.data.image,
+          data : {
+            time : new Date(Date.now()).toString(),
+            click_action : payload.data.click_action
+          }             
         }
         var myNotification = new Notification(title, options);
   
-      });     
-     
-   
+      }); 
