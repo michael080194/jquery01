@@ -37,6 +37,11 @@
   5. Ajax
      - (1). AJAX 基本概述(程式代碼 j13....)
      - (2). AJAX 進階說明(程式代碼 j14....)
+  6. firebase
+     - (1). firebase 程式範例(程式代碼 j80....)
+  7. google excel 
+     - (1). google excel 程式範例(程式代碼 j90....)     
+ 
 
 
 
