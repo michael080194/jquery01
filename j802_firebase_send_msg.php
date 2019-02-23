@@ -1,4 +1,6 @@
 <?php
+header('Access-Control-Allow-Origin: *'); //
+header("Content-Type:text/html; charset=utf-8");
 $server_key = $_POST['server_key'];
 $token      = array($_POST['token']);
 $title      = $_POST['title'];
@@ -17,8 +19,8 @@ $header = [
 $msg = [
     'title'        => $title,
     'body'         => $body,
-    'icon'         => 'icons/icon36.png',
-    'image'        => 'icons/notification.png',
+    'icon'         => 'icons/notification.png',
+    'image'        => 'icons/icon36.png',
     'click_action' => 'https://repair-b974d.firebaseapp.com',
 ];
 

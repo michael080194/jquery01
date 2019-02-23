@@ -34,50 +34,6 @@
     </style>    
 <script>
 var tokenArr = [];
-function sendMsg_bk(){
-  var endpoint = "https://fcm.googleapis.com/fcm/send"
-  xhttp = new XMLHttpRequest();
-  xhttp.open("POST", endpoint , true);
-  xhttp.setRequestHeader("Content-type", "application/json");
-  // xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
-  // xhttp.setRequestHeader('Access-Control-Allow-Methods', 'POST');  
-  xhttp.setRequestHeader("Authorization", "key=AAAAkcnsDtw:APA91bGItafVSUixBSoqn9qOKa7gNsL_EitrVc9Wq1MmewB3UE1LrlS_SOMbErhiUVs0w2zNjZwxXjF5PuTxcSckZ6-o3DUZwdguSytLI6khntz9UeWy0WQCNnW8SOCftoXaPZKO9iAU");  
-
-  xhttp.onreadystatechange = function() {
-    if(xhttp.readyState == 4){
-      if(xhttp.status == 200){
-        var response = JSON.parse(xhttp.responseText);
-        if(response.result == 1)
-          alert( 'ERROR: ' + response.message )
-        else
-          alert( 'Push notification sent successfully!' )
-      }
-    }
-  };
-
-  var  title = $("input[name='title']").val();   
-  var  message = $("input[name='message']").val(); 
-
-  var payload = {
-    "notification": {
-      "title": title,
-      "body": message,
-      "sound": "default",
-      "click_action": "FCM_PLUGIN_ACTIVITY",
-      "icon": "fcm_push_icon"
-    },
-    "data": {
-      "param1": "value1",
-      "param2": "value2"
-    },
-    "to": "/topics/all",
-    // "token":"",    
-    "priority": "high",
-    "restricted_package_name": "com.kyc168.repair"
-  };
-
-  xhttp.send(JSON.stringify(payload));
-}
 
 function sendMsgToApp(){
   var apiKey = "key=AAAAkcnsDtw:APA91bGItafVSUixBSoqn9qOKa7gNsL_EitrVc9Wq1MmewB3UE1LrlS_SOMbErhiUVs0w2zNjZwxXjF5PuTxcSckZ6-o3DUZwdguSytLI6khntz9UeWy0WQCNnW8SOCftoXaPZKO9iAU"
@@ -114,53 +70,6 @@ function sendMsgToApp(){
       });
 }      
 
-function sendMsgToChrome_bk(){
-  var apiKey1 = "key=AAAAkcnsDtw:APA91bGItafVSUixBSoqn9qOKa7gNsL_EitrVc9Wq1MmewB3UE1LrlS_SOMbErhiUVs0w2zNjZwxXjF5PuTxcSckZ6-o3DUZwdguSytLI6khntz9UeWy0WQCNnW8SOCftoXaPZKO9iAU"
-
-  apiKey1 = "key=AIzaSyDS_C3TZgxS-blH2Q1QjnGdTX41198yw1U"
-
-  var token = "fkI0yQQIB7U:APA91bEgPAT8AdKqwZh2yfCFXj-Rb7Q1j7DV_eGpuV-J9r_3Qxx4G8zi4ZJCFOWaKRlzQOoZoZei4Mh4UAEpYPJQ8I_1QBS8pTFICn17t9EkQsOqzya2Xd8XvWN3A_449-pyBXntyL2n"
-  var  title = $("input[name='title']").val();   
-  var  message = $("input[name='message']").val(); 
-
-
-var notificationData1 =
-{
-  "message": {
-    "token" : token,
-    "notification": {
-      "title": "FCM Message",
-      "body": "This is a message from FCM"
-    },
-    "webpush": {
-      "headers": {
-        "Urgency": "high"
-      },
-      "notification": {
-        "body": "This is a message from FCM to web",
-        "requireInteraction": "true",
-        "badge": "/badge-icon.png"
-      }
-    }
-  }
-}
-
-    $.ajax({
-        url: 'https://fcm.googleapis.com/fcm/send',
-        type: 'post',        
-        data: JSON.stringify(notificationData1),
-        headers: {
-          'Access-Control-Allow-Origin':'*',
-          'Content-Type': 'application/json',
-          'Content-Type': 'application/x-www-form-urlencoded',       
-          'Authorization': apiKey1
-        },
-        dataType: 'json',
-        success: function (data) {
-          console.log(data);
-        }
-      });
-}      
 
 function sendMsgToChrome(){
   //https://repair-b974d.firebaseio.com/token/.json'
@@ -173,7 +82,8 @@ function sendMsgToChrome(){
     data: JSON.stringify(param),
     success: function (data) {
       for (var token in data) {
-        sendMsgToChrome1(token)
+        sendMsgToChrome1(token);
+        // sendMsgToChromeByPhp(token);
       }
 
     },
@@ -190,8 +100,8 @@ function sendMsgToChrome1(subToken){
       var notification = {
         'title': title,
         'body': message,
-        'icon' : 'icons/icon36.png',
-        'image' : 'icons/notification.png',
+        'icon' : 'icons/notification.png',
+        'image' : 'icons/icon36.png',
         'click_action': 'https://repair-b974d.firebaseapp.com'
       };
 
@@ -213,50 +123,16 @@ function sendMsgToChrome1(subToken){
       })
   
 }
-function readToken1(){
-    console.log("read data...")
-    var ref = firebase.database().ref('token');
-    var str1 = "";
-    tokenTemp =[];
-    ref.on('value', function(snapshot) {
-        // console.log("snapshot" , snapshot.val());
-        tokenTemp.push(snapshot.val().token);   
-        // console.log("tokenTemp" , snapshot.val().token);
-        // console.log("tokenArr1" , tokenArr);             
-        // snapshot.forEach(function(childSnapshot) {
-        //   var roomsNo = childSnapshot.key;
-        //   var childData = childSnapshot.val();
-        //   console.log(roomsNo , childData);
-        // });
-    });
 
-    return tokenTemp
-}
 
-function readToken2(){
-    console.log("read data 1" );  
-    return new Promise(function (resolve, reject) {
-        var ref = firebase.database().ref('token');
-        var str1 = "";
-        tokenArr =[];
-        ref.on('value', function(snapshot) {
-            tokenArr.push(snapshot.val().token);   
-            // console.log("tokenArr1" , tokenArr);             
-        });
-        console.log("read data 2" , tokenArr);  
-        resolve(tokenArr) ;
-    });   
-}
-
-function sendMsgToChromeByPhp(){
-  readToken();
-  url1 = "http://localhost/php/jquery01/j802_firebase_send_msg.php"
+function sendMsgToChromeByPhp(subToken){
+  // url1 = "http://localhost/php/jquery01/j802_firebase_send_msg.php"
+  url1 = "http://202.39.64.155/~may/jquery01/j802_firebase_send_msg.php";
   var title = $("input[name='title']").val();   
   var message = $("input[name='message']").val();  
-  var token = "eztdQ9VKBV8:APA91bFKiQ-7f1wK5gvZCpX8nd6CR3XK87ShZBLFdyK_TCHQQxoFSNgLkep5If3Mc3HEAznf4JjBd6gY-5z1yVhnuBUA5ZPDwYgMN-eP_qhrLz4GGpKvuaL6KD_nhygfoZRfRVkrZZwy";
   var pass0 = {};
   pass0.server_key = "AIzaSyDZjHWHKkaTcGW9jS-_HTGQlxsbDx4edHE";
-  pass0.token = token;  
+  pass0.token = subToken;  
   pass0.title = title;  // Notification title
   pass0.body = message; // Notification body
   $.ajax({
