@@ -34,18 +34,6 @@
     </style>    
 <script>
   
-  // var config = {
-  //   apiKey: "AIzaSyDS_C3TZgxS-blH2Q1QjnGdTX41198yw1U",
-  //   authDomain: "repair-b974d.firebaseapp.com",
-  //   databaseURL: "https://repair-b974d.firebaseio.com",
-  //   projectId: "repair-b974d",
-  //   storageBucket: "repair-b974d.appspot.com",
-  //   messagingSenderId: "626157948636"
-  // };
-
-  // firebase.initializeApp(config);
-  // var database = firebase.database();
-  
 function readData(){
   $("#tableData").html();
     var ref = database.ref('rooms');
@@ -140,16 +128,6 @@ function updateData() {
      return false ; 
   }
 
-  // checkData(roomsNo).then(function onFulfilled(value){
-  //     console.log(value);
-  //     if(value != "OK") {
-  //        alert("rooms No 不存在 ....")
-  //         return false ; 
-  //     }      
-  // }).catch(function onRejected(error){
-  //     console.error(error);
-  // });
-
   checkData(roomsNo).then(function (value) {
      console.log(value);
      if(value != "OK") {
@@ -159,11 +137,7 @@ function updateData() {
   }).catch(function (error) {
      alert(error);
   });
-  // var xx1 = checkData(roomsNo);
-  // console.log(xx1);
 
-  // let str1 = await checkData(roomsNo);
-  // alert(str1);
   var  temperature = $("input[name='temperature']").val();   
   var  humility = $("input[name='humility']").val(); 
   var json = {
