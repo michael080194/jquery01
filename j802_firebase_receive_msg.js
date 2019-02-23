@@ -32,51 +32,18 @@
     } else {
       console.log("Notification.permission  is allowed")
     }
-
-    // step--01
-    // Initialize Firebase
-    // var config = {
-    //   apiKey: "AIzaSyDS_C3TZgxS-blH2Q1QjnGdTX41198yw1U",
-    //   authDomain: "repair-b974d.firebaseapp.com",
-    //   databaseURL: "https://repair-b974d.firebaseio.com",
-    //   projectId: "repair-b974d",
-    //   storageBucket: "repair-b974d.appspot.com",
-    //   messagingSenderId: "626157948636"
-    // };
-
-    // firebase.initializeApp(config);
-    // const database = firebase.database();
-    // // step--02
-    // // Retrieve Firebase Messaging object.
-    // const messaging = firebase.messaging();
       
-    messaging.usePublicVapidKey("BKsArxACO_ucIeJcV5bNCXTigL0XYSP5QpvqV4Z_YTuFZg028n6WGfQdvH7uYLmtd_5JCHy3CVjLgXRPJFLj3Qg");
+    if (firebase.messaging.isSupported()) {      
+       messaging.usePublicVapidKey("BKsArxACO_ucIeJcV5bNCXTigL0XYSP5QpvqV4Z_YTuFZg028n6WGfQdvH7uYLmtd_5JCHy3CVjLgXRPJFLj3Qg");
+    }    
 
-   
-    // firebase.messaging().onMessage(notification => {
-    //   alert('Notification received!', notification);
-    // });    
-    // IDs of divs that display Instance ID token UI or request permission UI.
     const tokenDivId = 'token_div';
     const permissionDivId = 'permission_div';
     // step--03
     messaging.requestPermission().then(function() {
-      // navigator.serviceWorker.register('firebase-messaging-sw.js')
-      // .then((registration) => {
-      //   messaging.useServiceWorker(registration);
-      
-      //   // Request permission and get token.....
-      // });        
       console.log('Notification permission granted.');
       if('serviceWorker' in navigator) {
-        console.log("serviceWorker  is supportted")
-        // navigator.serviceWorker.register("firebase-messaging-sw.js").then(function() { //Include the service worker js file
-        //   //Registration worked
-        // }).catch(function() {
-        //   //Registration didn't work a
-        // }); 
-        // messaging.useServiceWorker('sw.js');                
-        // firebase.messaging().useServiceWorker('firebase-messaging-sw.js')           
+        console.log("serviceWorker  is supportted")         
      }      
       if (!isTokenSentToServer()) {
           getRegisterToken();
@@ -173,21 +140,7 @@
       }
     }
     function deleteToken() {
-        // setTokenSentToServer(false);
-        // Delete Instance ID token.
-        // [START delete_token]
         messaging.getToken().then(function(currentToken) {
-          // messaging.deleteToken(currentToken).then(function() {
-          //   console.log('Token deleted.');
-          //   setTokenSentToServer(false);
-          //   // [START_EXCLUDE]
-          //   // Once token is deleted update UI.
-          //   // resetUI();
-          //   // [END_EXCLUDE]
-          // }).catch(function(err) {
-          //   console.log('Unable to delete token. ', err);
-          // });
-          // [END delete_token]
           var ref = database.ref('token/' + currentToken);  
 
           ref.remove()
@@ -203,40 +156,9 @@
           showToken('Error retrieving Instance ID token. ', err);
         });
       }
-      // function resetUI() {
-      //   clearMessages();
-      //   showToken('loading...');
-      //   // [START get_token]
-      //   // Get Instance ID token. Initially this makes a network call, once retrieved
-      //   // subsequent calls to getToken will return from cache.
-      //   messaging.getToken().then(function(currentToken) {
-      //     if (currentToken) {
-      //       sendTokenToServer(currentToken);
-      //       updateUIForPushEnabled(currentToken);
-      //     } else {
-      //       // Show permission request.
-      //       console.log('No Instance ID token available. Request permission to generate one.');
-      //       // Show permission UI.
-      //       updateUIForPushPermissionRequired();
-      //       setTokenSentToServer(false);
-      //     }
-      //   }).catch(function(err) {
-      //     console.log('An error occurred while retrieving token. ', err);
-      //     showToken('Error retrieving Instance ID token. ', err);
-      //     setTokenSentToServer(false);
-      //   });
-      //   // [END get_token]
-      // }  
-      // function clearMessages() {
-      //   const messagesElement = document.querySelector('#messages');
-      //   while (messagesElement.hasChildNodes()) {
-      //     messagesElement.removeChild(messagesElement.lastChild);
-      //   }
-      // }  
+
 
       messaging.onMessage(function(payload) {
-        // alert("Message received.")
-        // console.log(payload);
         var title = payload.data.title;
         var options = {
           body : payload.data.body , 
