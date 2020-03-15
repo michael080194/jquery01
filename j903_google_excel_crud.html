@@ -52,7 +52,7 @@
 	  $('#mySpinner').addClass('spinner');
 	  var id1=	$("#id").val();
 	  var name= $("#name").val();
-   var url = script_url+"?callback=ctrlq&name="+name+"&id="+id1+"&action=insert";
+    var url = script_url+"?callback=ctrlq&name="+name+"&id="+id1+"&action=insert";
 	  var request = jQuery.ajax({
       crossDomain: true,
       url: url ,
@@ -93,7 +93,7 @@
   // print the returned data
   function ctrlq(e) {
 	  $("#re").html(e.result);
-   $("#re").css("visibility","visible");
+    $("#re").css("visibility","visible");
 	  read_value();
   }
   
@@ -136,17 +136,13 @@
 
   <body>
     <div align="center">
-      <h1>CRUD OPERATION ON GOOGLE SPREAD SHEET, WEB APPLICATION USING GOOGLE APP SCRIPT .</h1> 
-      <p>This is simple application, You can develop your own logic based on your requiremnets.<p>
-      <p>Be careful with the parameters you are sending, it should match the parameters that are recived in google app script.</p>
-      
-      
+      <h1>CRUD ON GOOGLE SPREAD SHEET</h1> 
+
       <form >
-      ID
-      <input type = "text" name ="id" id="id">
-      Name
+      帳號
       <input type = "text" name ="name" id="name">
-      
+      密碼
+      <input type = "text" name ="id" id="id">
       </form>
       
       <div id="loader"></div>
@@ -161,7 +157,5 @@
       <div id="showData"></div>
       </div>   
   </body>
-  <div align="center">
-    <p>ANDROID LABS 2017 | All Rights Reserved</p>
-  </div>
+
 </html>
